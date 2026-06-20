@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html class="dark scroll-smooth" lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>PyO HOMES COMERCIAL - Estrategia Inmobiliaria</title>
+    <meta name="description" content="Tu socio estratégico en inversiones inmobiliarias comerciales de alto valor en la región de Valparaíso. Especialistas en Quillota y Limache.">
+    
+    <!-- Tailwind CSS CDN with plugins -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
+    <!-- Custom Tailwind Config -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-background": "#e1e3e4",
+                        "surface-tint": "#bbc7de",
+                        "outline": "#8f9097",
+                        "tertiary-fixed": "#d6e3ff",
+                        "primary-fixed-dim": "#bbc7de",
+                        "surface-dim": "#111415",
+                        "inverse-surface": "#e1e3e4",
+                        "inverse-on-surface": "#2e3132",
+                        "background": "#111415",
+                        "secondary": "#fff9ef",
+                        "on-tertiary-fixed": "#091c35",
+                        "on-secondary-fixed-variant": "#544600",
+                        "primary-fixed": "#d7e3fb",
+                        "tertiary-fixed-dim": "#b7c7e9",
+                        "surface-container-low": "#191c1d",
+                        "on-secondary-fixed": "#221b00",
+                        "on-surface": "#e1e3e4",
+                        "surface-container-high": "#282a2b",
+                        "primary": "#bbc7de",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary": "#20314b",
+                        "surface-container": "#1d2021",
+                        "on-surface-variant": "#c5c6cd",
+                        "on-primary-fixed-variant": "#3c475a",
+                        "surface-variant": "#323536",
+                        "surface-bright": "#373a3b",
+                        "on-error": "#690005",
+                        "on-secondary": "#3a3000",
+                        "secondary-container": "#ffdb3c",
+                        "outline-variant": "#44474c",
+                        "tertiary-container": "#02142d",
+                        "surface": "#111415",
+                        "on-tertiary-container": "#6f7f9e",
+                        "on-primary": "#263143",
+                        "surface-container-highest": "#323536",
+                        "on-tertiary-fixed-variant": "#374763",
+                        "surface-container-lowest": "#0c0f10",
+                        "inverse-primary": "#545f73",
+                        "error-container": "#93000a",
+                        "error": "#ffb4ab",
+                        "primary-container": "#081425",
+                        "tertiary": "#b7c7e9",
+                        "on-primary-fixed": "#101c2d",
+                        "secondary-fixed-dim": "#e9c400",
+                        "on-primary-container": "#737f94",
+                        "secondary-fixed": "#ffe16d",
+                        "on-secondary-container": "#725f00",
+                        "gold": "#FFD700",
+                        "luxury-blue": "#12233D"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {
+                        "margin-desktop": "80px",
+                        "unit": "8px",
+                        "margin-mobile": "20px",
+                        "container-max": "1280px",
+                        "gutter": "24px"
+                    },
+                    fontFamily: {
+                        sans: ["Manrope", "sans-serif"],
+                        "headline-lg": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "label-caps": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "display-lg": ["Manrope"]
+                    },
+                    fontSize: {
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        };
+    </script>
+    
+    <!-- Custom CSS -->
+    <style>
+        .gold-border-glow {
+            box-shadow: 0 0 20px 0px rgba(255, 215, 0, 0.1);
+        }
+        .modal-transition {
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Scroll reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(36px) scale(0.97);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        /* Mobile menu drawer animation */
+        #mobileDrawer {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .input-gold-focus:focus {
+            border-color: #FFD700;
+            outline: none;
+            box-shadow: 0 0 0 1px rgba(255,215,0,0.7), 0 4px 20px rgba(255,215,0,0.1);
+            background-color: rgba(255,215,0,0.03);
+        }
+        /* Professional form field system */
+        .form-field { position: relative; }
+        .form-label {
+            display: block;
+            font-size: 0.6875rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(197,198,205,0.6);
+            margin-bottom: 0.5rem;
+            transition: color 0.25s ease;
+            font-family: 'Manrope', sans-serif;
+        }
+        .form-field:focus-within .form-label { color: #FFD700; }
+        .form-icon {
+            position: absolute;
+            left: 0.875rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px !important;
+            width: 18px;
+            height: 18px;
+            color: rgba(197,198,205,0.4);
+            pointer-events: none;
+            transition: color 0.25s ease;
+            user-select: none;
+            line-height: 1;
+        }
+        .form-field:focus-within .form-icon { color: #FFD700; }
+        /* Animated underline for nav links */
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background-color: #FFD700;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after,
+        .nav-link.text-gold::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-sans antialiased min-h-screen flex flex-col selection:bg-secondary-container selection:text-primary-container overflow-x-hidden">
+
+    <!-- TopNavBar -->
+    <nav class="bg-background/85 backdrop-blur-md fixed top-0 w-full z-40 border-b border-white/10 h-20 flex justify-between items-center px-4 md:px-margin-desktop transition-[background-color,box-shadow,border-color] duration-300">
+        <div class="flex items-center gap-3">
+            <img src="Logotransparente.png" alt="PyO HOMES COMERCIAL Logo" class="h-14 w-14 object-contain">
+            <span class="font-bold text-lg md:text-xl tracking-tight text-secondary uppercase">PyO HOMES COMERCIAL</span>
+        </div>
+        <div class="hidden lg:flex items-center gap-8">
+            <a class="nav-link font-label-caps text-label-caps text-on-surface-variant hover:text-gold transition-colors duration-300 uppercase tracking-widest" href="#hero">Inicio</a>
+            <a class="nav-link font-label-caps text-label-caps text-on-surface-variant hover:text-gold transition-colors duration-300 uppercase tracking-widest" href="#nosotros">Sobre Mí</a>
+            <a class="nav-link font-label-caps text-label-caps text-on-surface-variant hover:text-gold transition-colors duration-300 uppercase tracking-widest" href="#servicios">Servicios</a>
+            <a class="nav-link font-label-caps text-label-caps text-on-surface-variant hover:text-gold transition-colors duration-300 uppercase tracking-widest" href="#alianza">Alianza</a>
+            <a class="nav-link font-label-caps text-label-caps text-on-surface-variant hover:text-gold transition-colors duration-300 uppercase tracking-widest" href="#testimonios">Formación</a>
+            <a class="nav-link font-label-caps text-label-caps text-on-surface-variant hover:text-gold transition-colors duration-300 uppercase tracking-widest" href="#contacto">Contacto</a>
+        </div>
+        <div class="flex items-center gap-4">
+            <button onclick="openModal('comprar')" class="hidden lg:block font-label-caps text-label-caps text-primary-container bg-gold px-6 py-3 uppercase tracking-wider hover:bg-gold/90 hover:shadow-[0_8px_32px_rgba(255,215,0,0.55)] hover:scale-[1.04] hover:-translate-y-0.5 transition-all duration-200 font-bold rounded-sm">
+                CONTACTAR
+            </button>
+            <button aria-label="Abrir menú" onclick="toggleMobileMenu(true)" class="lg:hidden text-secondary hover:text-gold hover:scale-125 transition-all duration-200 p-2">
+                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 0;">menu</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer Navigation -->
+    <div id="mobileDrawerOverlay" onclick="toggleMobileMenu(false)" class="fixed inset-0 bg-background/90 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    <div id="mobileDrawer" class="fixed top-0 right-0 h-full w-[280px] bg-surface-container-lowest border-l border-white/10 z-50 transform translate-x-full flex flex-col p-6 shadow-2xl">
+        <div class="flex justify-between items-center mb-10 border-b border-white/10 pb-4">
+            <div class="flex items-center gap-2">
+                <img src="Logotransparente.png" alt="PyO HOMES COMERCIAL Logo" class="h-12 w-12 object-contain">
+                <span class="font-bold text-sm tracking-tight text-white uppercase">PyO HOMES</span>
+            </div>
+            <button aria-label="Cerrar menú" onclick="toggleMobileMenu(false)" class="text-on-surface-variant hover:text-gold hover:scale-125 transition-all duration-200">
+                <span class="material-symbols-outlined text-2xl">close</span>
+            </button>
+        </div>
+        <div class="flex flex-col gap-6 grow">
+            <a onclick="toggleMobileMenu(false)" class="nav-link-mobile text-lg font-semibold text-on-surface-variant hover:text-gold transition-colors" href="#hero">Inicio</a>
+            <a onclick="toggleMobileMenu(false)" class="nav-link-mobile text-lg font-semibold text-on-surface-variant hover:text-gold transition-colors" href="#nosotros">Sobre Mí</a>
+            <a onclick="toggleMobileMenu(false)" class="nav-link-mobile text-lg font-semibold text-on-surface-variant hover:text-gold transition-colors" href="#servicios">Servicios</a>
+            <a onclick="toggleMobileMenu(false)" class="nav-link-mobile text-lg font-semibold text-on-surface-variant hover:text-gold transition-colors" href="#alianza">Alianza</a>
+            <a onclick="toggleMobileMenu(false)" class="nav-link-mobile text-lg font-semibold text-on-surface-variant hover:text-gold transition-colors" href="#testimonios">Formación</a>
+            <a onclick="toggleMobileMenu(false)" class="nav-link-mobile text-lg font-semibold text-on-surface-variant hover:text-gold transition-colors" href="#contacto">Contacto</a>
+        </div>
+        <button onclick="toggleMobileMenu(false); openModal('vender');" class="w-full bg-gold text-primary-container font-label-caps text-label-caps font-bold py-4 rounded tracking-wider uppercase hover:bg-gold/90 hover:shadow-[0_8px_32px_rgba(255,215,0,0.55)] hover:scale-[1.04] hover:-translate-y-0.5 transition-all duration-200">
+            Solicitar Evaluación
+        </button>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow pt-20" id="hero">
+        
+        <!-- Hero Section -->
+        <section class="relative min-h-[90vh] flex flex-col justify-center items-center text-center px-4 md:px-margin-desktop py-20 bg-primary-container overflow-hidden">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2940&auto=format&fit=crop')] bg-cover bg-center opacity-25" data-alt="Fondo de rascacielos corporativos corporativos en Valparaíso"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-background via-background/85 to-transparent"></div>
+            
+            <div class="relative z-10 max-w-4xl mx-auto flex flex-col items-center gap-6 md:gap-8 reveal">
+                <span class="font-label-caps text-label-caps text-gold tracking-widest uppercase block">Para propietarios que quieren vender bien</span>
+                <h1 class="font-display-lg text-3xl md:text-5xl text-white font-bold leading-tight uppercase">
+                    Vender una propiedad no es <span class="text-secondary-container">suerte</span>, es <span class="text-gold">estrategia</span>
+                </h1>
+                <p class="font-body-lg text-base md:text-lg text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
+                    En HyC Asociados y PyO Homes Comercial no creemos en publicar y esperar. Creemos en trabajar cada propiedad comercial y residencial con criterio, estrategia comercial y un seguimiento constante durante todo el proceso.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center w-full max-w-md mt-6">
+                    <button class="w-full sm:w-auto sm:min-w-[260px] px-8 py-4 bg-gold text-primary-container font-label-caps text-label-caps uppercase tracking-wider hover:bg-gold/90 hover:shadow-[0_8px_32px_rgba(255,215,0,0.55)] hover:scale-[1.04] hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center gap-2 font-bold shadow-[0_0_25px_rgba(255,215,0,0.15)] rounded-sm whitespace-nowrap" onclick="openModal('vender')">
+                        <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">real_estate_agent</span>
+                        Quiero Vender
+                    </button>
+                    <button class="w-full sm:w-auto sm:min-w-[260px] px-8 py-4 border border-gold text-gold font-label-caps text-label-caps uppercase tracking-wider hover:bg-gold/15 hover:shadow-[0_6px_28px_rgba(255,215,0,0.35)] hover:scale-[1.04] hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center gap-2 font-bold rounded-sm whitespace-nowrap" onclick="openModal('comprar')">
+                        <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">key</span>
+                        Quiero Comprar/Arrendar
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- About / Profile Section -->
+        <section class="py-20 md:py-[120px] px-4 md:px-margin-desktop bg-background border-b border-white/5" id="nosotros">
+            <div class="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-gutter items-center">
+                <!-- Left: Portrait Photo with frames -->
+                <div class="lg:col-span-5 relative w-full max-w-md mx-auto lg:max-w-none reveal">
+                    <div class="absolute -inset-4 border border-gold/20 rounded transform translate-x-3 translate-y-3 z-0"></div>
+                    <div class="aspect-[4/5] bg-surface-container-high border border-white/10 relative overflow-hidden z-10 shadow-2xl">
+                        <img alt="Patricio - PyO Homes" class="w-full h-full object-cover transition-all duration-700 ease-out transform hover:scale-102" src="Fotoperfil.png">
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 w-28 h-28 bg-gold flex items-center justify-center rounded-full p-4 hidden md:flex shadow-lg z-20 animate-pulse">
+                        <img alt="Logo llave" class="w-full h-full object-contain invert brightness-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1Ui76JuiDCUthLAB_SxeG0jQI1ah9ta0u2qJiaKzNp4DiKb6ki0iNhJxUquyy1HkhNgOCfJrOS2EGfsoXGfCtCXiPK9o0bNzDIv4dV75soMPyYb3AfY6a3lLfBFu1vRmfNCcZV_DUF8tCFxoQr8CNWyUtMHhHo8H37ticnqmUVvc9vrkUhH3wE88UqAi0qzHuVTnqd_IXYNzQB4tUSIW1bmozfbE5n45IdkmIxaiuEvgBrYJiPTRZsmexRrceouG4BHOgDJsVHlW2">
+                    </div>
+                </div>
+                <!-- Right: Description -->
+                <div class="lg:col-span-6 lg:col-start-7 space-y-6 md:space-y-8 mt-6 lg:mt-0 reveal">
+                    <div class="space-y-3">
+                        <span class="font-label-caps text-label-caps text-gold tracking-widest uppercase">Expertise Local</span>
+                        <h2 class="font-headline-lg text-2xl md:text-4xl font-bold text-white leading-tight">Conocimiento profundo en Quillota y alrededores.</h2>
+                    </div>
+                    <p class="font-body-lg text-base md:text-lg text-on-surface-variant leading-relaxed">
+                        Me llamo Pato Ordenes y como líder de <strong class="text-white">PyO Homes Comercial</strong>, mi enfoque es proporcionar asesoramiento estratégico y transparente a propietarios, inversores, corporaciones y familias. Comprendo las dinámicas inmobiliarias el cual me permite ofrecer un servicio de calidad que prioriza el acompañamiento desde la publicación hasta la firma de escritura como también la rentabilidad y asesoría de manera personalizada y discreta.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-4">
+                            <span class="material-symbols-outlined text-gold mt-1" style="font-variation-settings: 'FILL' 0;">done_all</span>
+                            <div>
+                                <h4 class="font-headline-md text-base md:text-lg font-bold text-white">Valoraciones Precisas</h4>
+                                <p class="text-on-surface-variant text-sm mt-1">Análisis exhaustivos de mercado basados en datos duros y tendencias locales para un precio de venta idóneo.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="material-symbols-outlined text-gold mt-1" style="font-variation-settings: 'FILL' 0;">handshake</span>
+                            <div>
+                                <h4 class="font-headline-md text-base md:text-lg font-bold text-white">Negociación Estratégica</h4>
+                                <p class="text-on-surface-variant text-sm mt-1">Representación firme y profesional en cada fase para maximizar su retorno de inversión.</p>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <!-- Stats Grid from Mobile -->
+                    <div class="grid grid-cols-2 gap-6 pt-6 border-t border-white/10">
+                        <div class="flex flex-col gap-2">
+                            <span class="text-3xl md:text-4xl font-bold text-gold font-display-lg">5+</span>
+                            <span class="text-[10px] text-on-surface-variant uppercase tracking-widest leading-tight">Años de experiencia en ventas, negociación y atención al público</span>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <span class="text-3xl md:text-4xl font-bold text-gold font-display-lg">100%</span>
+                            <span class="text-[10px] text-on-surface-variant uppercase tracking-widest leading-tight">Transparencia y compromiso con cada cliente</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="py-20 md:py-[120px] px-4 md:px-margin-desktop bg-background border-b border-white/5" id="servicios">
+            <div class="max-w-container-max mx-auto">
+                <div class="text-center mb-16 space-y-4 reveal">
+                    <span class="font-label-caps text-label-caps text-gold tracking-widest uppercase">Nuestras Soluciones</span>
+                    <h2 class="font-headline-lg text-2xl md:text-4xl font-bold text-white">Servicios Especializados</h2>
+                    <p class="text-on-surface-variant max-w-xl mx-auto text-sm md:text-base">Brindamos un acompañamiento integral adaptado a sus objetivos, ya sea para vender activos comerciales o adquirir su próxima gran inversión.</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-gutter reveal-stagger">
+                    <!-- Sellers Card -->
+                    <div class="p-8 md:p-10 border border-white/10 bg-primary-container relative group hover:border-gold/50 transition-all duration-500 gold-border-glow rounded-sm flex flex-col">
+                        <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <span class="material-symbols-outlined text-[80px] md:text-[96px] text-gold" style="font-variation-settings: 'FILL' 0;">sell</span>
+                        </div>
+                        <h3 class="font-headline-md text-xl md:text-2xl font-bold text-white mb-6 relative z-10 flex items-center gap-3">
+                            <span class="material-symbols-outlined text-gold">real_estate_agent</span>
+                            Para Vendedores
+                        </h3>
+                        <ul class="space-y-4 relative z-10 mb-8 flex-grow">
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-gold text-sm mt-1" style="font-variation-settings: 'FILL' 1;">circle</span>
+                                <span class="text-on-surface-variant text-sm md:text-base">Auditoría detallada y valoraciones comerciales basadas en datos reales.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-gold text-sm mt-1" style="font-variation-settings: 'FILL' 1;">circle</span>
+                                <span class="text-on-surface-variant text-sm md:text-base">Plan de marketing digital y estrategia de venta personalizado para su propiedad.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-gold text-sm mt-1" style="font-variation-settings: 'FILL' 1;">circle</span>
+                                <span class="text-on-surface-variant text-sm md:text-base">Filtro de prospectos y control riguroso de capacidad de compra e interés.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-gold text-sm mt-1" style="font-variation-settings: 'FILL' 1;">circle</span>
+                                <span class="text-on-surface-variant text-sm md:text-base">Acompañamiento y monitoreo constante hasta la firma de escritura en conservador.</span>
+                            </li>
+                        </ul>
+                        <button class="w-full py-4 border border-gold text-gold font-label-caps text-label-caps uppercase tracking-wider hover:bg-gold/15 hover:shadow-[0_6px_28px_rgba(255,215,0,0.35)] hover:scale-[1.04] hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center gap-2 font-bold rounded-sm relative z-10" onclick="openModal('vender')">
+                            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">analytics</span>
+                            Solicitar Evaluación Comercial
+                        </button>
+                    </div>
+                    
+                    <!-- Buyers Card -->
+                    <div class="p-8 md:p-10 border border-white/10 bg-primary-container relative group hover:border-gold/50 transition-all duration-500 rounded-sm flex flex-col">
+                        <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <span class="material-symbols-outlined text-[80px] md:text-[96px] text-gold" style="font-variation-settings: 'FILL' 0;">shopping_bag</span>
+                        </div>
+                        <h3 class="font-headline-md text-xl md:text-2xl font-bold text-white mb-6 relative z-10 flex items-center gap-3">
+                            <span class="material-symbols-outlined text-gold">key</span>
+                            Para Compradores
+                        </h3>
+                        <ul class="space-y-4 relative z-10 mb-8 flex-grow">
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-gold text-sm mt-1" style="font-variation-settings: 'FILL' 1;">circle</span>
+                                <span class="text-on-surface-variant text-sm md:text-base">Búsqueda activa y confidencial de propiedades y oportunidades Off-Market.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-gold text-sm mt-1" style="font-variation-settings: 'FILL' 1;">circle</span>
+                                <span class="text-on-surface-variant text-sm md:text-base">Análisis de viabilidad urbana, comercial y Due Diligence completo.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-gold text-sm mt-1" style="font-variation-settings: 'FILL' 1;">circle</span>
+                                <span class="text-on-surface-variant text-sm md:text-base">Defensa al comprador en negociaciones complejas de alto valor.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-gold text-sm mt-1" style="font-variation-settings: 'FILL' 1;">circle</span>
+                                <span class="text-on-surface-variant text-sm md:text-base">Acompañamiento integral post-venta, traspaso de servicios y asesoramiento.</span>
+                            </li>
+                        </ul>
+                        <button class="w-full py-4 border border-gold text-gold font-label-caps text-label-caps uppercase tracking-wider hover:bg-gold/15 hover:shadow-[0_6px_28px_rgba(255,215,0,0.35)] hover:scale-[1.04] hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center gap-2 font-bold rounded-sm relative z-10" onclick="openModal('comprar')">
+                            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">search</span>
+                            Búsqueda Personalizada
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Alliance Section -->
+        <section class="py-20 md:py-[120px] px-4 md:px-margin-desktop bg-surface-container-lowest" id="alianza">
+            <div class="max-w-container-max mx-auto text-center space-y-10 md:space-y-12">
+                <div class="max-w-3xl mx-auto space-y-4 reveal">
+                    <span class="font-label-caps text-label-caps text-gold tracking-widest uppercase">Alianza Estratégica</span>
+                    <h2 class="font-headline-lg text-2xl md:text-4xl font-bold text-white">Potenciados por HyC Asociados</h2>
+                    <p class="font-body-md text-sm md:text-base text-on-surface-variant leading-relaxed">
+                        Nuestra capacidad operativa se expande mediante una sólida alianza con HyC Asociados, lo que nos brinda acceso a una red de primer nivel y herramientas avanzadas en el mercado inmobiliario nacional.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-4xl mx-auto reveal-stagger">
+                    <div class="p-8 border border-white/5 bg-surface-container-high/50 flex flex-col items-center text-center space-y-3 rounded-lg group hover:border-gold/30 transition-all duration-300">
+                        <span class="material-symbols-outlined text-4xl text-gold group-hover:scale-125 transition-transform" style="font-variation-settings: 'FILL' 0;">groups</span>
+                        <h3 class="font-headline-md text-3xl md:text-4xl font-bold text-white">+70</h3>
+                        <p class="font-label-caps text-xs text-on-surface-variant uppercase tracking-widest">Agentes Inmobiliarios</p>
+                    </div>
+                    <div class="p-8 border border-white/5 bg-surface-container-high/50 flex flex-col items-center text-center space-y-3 rounded-lg group hover:border-gold/30 transition-all duration-300">
+                        <span class="material-symbols-outlined text-4xl text-gold group-hover:scale-125 transition-transform" style="font-variation-settings: 'FILL' 0;">domain</span>
+                        <h3 class="font-headline-md text-3xl md:text-4xl font-bold text-white">Amplia</h3>
+                        <p class="font-label-caps text-xs text-on-surface-variant uppercase tracking-widest">Cartera Comercial</p>
+                    </div>
+                    <div class="p-8 border border-white/5 bg-surface-container-high/50 flex flex-col items-center text-center space-y-3 rounded-lg group hover:border-gold/30 transition-all duration-300">
+                        <span class="material-symbols-outlined text-4xl text-gold group-hover:scale-125 transition-transform" style="font-variation-settings: 'FILL' 0;">language</span>
+                        <h3 class="font-headline-md text-3xl md:text-4xl font-bold text-white">Nacional</h3>
+                        <p class="font-label-caps text-xs text-on-surface-variant uppercase tracking-widest">Alcance de Red</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="py-20 md:py-[120px] px-4 md:px-margin-desktop bg-background border-t border-white/5" id="testimonios">
+            <div class="max-w-container-max mx-auto">
+                <div class="text-center mb-12 space-y-3 reveal">
+                    <span class="font-label-caps text-label-caps text-gold tracking-widest uppercase">Formación</span>
+                    <h2 class="font-headline-lg text-2xl md:text-4xl font-bold text-white">En constante evolución</h2>
+                    <p class="text-on-surface-variant text-sm md:text-base max-w-xl mx-auto">Me capacito de manera continua para dominar las tendencias y las mecánicas del mercado inmobiliario para ofrecer una experiencia memorable, además de potenciar el patrimonio mediante oportunidades inmobiliarias.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto reveal-stagger">
+                    <!-- Foto capacitación 1 -->
+                    <div class="relative aspect-video bg-surface-container-high border border-white/5 rounded-lg overflow-hidden shadow-lg hover:border-gold/40 transition-all duration-500 group">
+                        <img alt="Patricio Ordenes en capacitación 1" class="w-full h-full object-cover scale-100 group-hover:scale-105 transition-all duration-500" src="Fotocapacitacion.png">
+                        <div class="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent"></div>
+                    </div>
+
+                    <!-- Foto capacitación 2 -->
+                    <div class="relative aspect-video bg-surface-container-high border border-white/5 rounded-lg overflow-hidden shadow-lg hover:border-gold/40 transition-all duration-500 group">
+                        <img alt="Patricio Ordenes en capacitación 2" class="w-full h-full object-cover scale-100 group-hover:scale-105 transition-all duration-500" src="Fotocapacitacion2.png">
+                        <div class="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="py-20 md:py-[120px] px-4 md:px-margin-desktop bg-surface-container-lowest relative" id="contacto">
+            <div class="absolute inset-0 bg-primary-container/10"></div>
+            <div class="max-w-4xl mx-auto relative z-10">
+                <div class="p-8 md:p-16 border border-white/10 bg-luxury-blue shadow-2xl rounded-lg gold-border-glow reveal">
+                    <div class="text-center mb-12">
+                        <h2 class="text-2xl md:text-4xl font-bold text-white mb-4">Iniciemos una Conversación</h2>
+                        <p class="text-on-surface-variant text-sm md:text-base max-w-md mx-auto">Complete el siguiente formulario y me contactaré con usted lo más pronto posible de forma confidencial.</p>
+                    </div>
+                    
+                    <form id="contactForm" onsubmit="handleFormSubmit(event, 'Formulario de Contacto')" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="form-field">
+                                <label class="form-label" for="contactName">Nombre Completo *</label>
+                                <div class="relative">
+                                    <span class="material-symbols-outlined form-icon">person</span>
+                                    <input class="bg-surface-container border border-white/[0.15] text-white rounded pl-10 pr-3 py-3 transition-all outline-none w-full input-gold-focus placeholder:text-on-surface-variant/30" id="contactName" placeholder="Ej. Juan Pérez" required type="text">
+                                </div>
+                            </div>
+                            <div class="form-field">
+                                <label class="form-label" for="contactPhone">Teléfono *</label>
+                                <div class="relative">
+                                    <span class="material-symbols-outlined form-icon">phone</span>
+                                    <span class="absolute left-9 top-1/2 -translate-y-1/2 text-on-surface-variant/60 font-medium text-sm select-none">+56</span>
+                                    <input class="bg-surface-container border border-white/[0.15] text-white rounded pl-[4.5rem] pr-3 py-3 transition-all outline-none w-full input-gold-focus placeholder:text-on-surface-variant/30" id="contactPhone" placeholder="9 1234 5678" required type="tel">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-field">
+                            <label class="form-label" for="contactEmail">Correo Electrónico *</label>
+                            <div class="relative">
+                                <span class="material-symbols-outlined form-icon">alternate_email</span>
+                                <input class="bg-surface-container border border-white/[0.15] text-white rounded pl-10 pr-3 py-3 transition-all outline-none w-full input-gold-focus placeholder:text-on-surface-variant/30" id="contactEmail" placeholder="correo@empresa.com" required type="email">
+                            </div>
+                        </div>
+
+                        <div class="form-field">
+                            <label class="form-label" for="contactInterest">Me interesa *</label>
+                            <div class="relative">
+                                <span class="material-symbols-outlined form-icon">tune</span>
+                                <select class="bg-surface-container border border-white/[0.15] text-white rounded pl-10 pr-10 py-3 transition-all outline-none w-full appearance-none input-gold-focus" id="contactInterest" required>
+                                    <option value="vender">Quiero Vender mi Propiedad</option>
+                                    <option value="comprar">Quiero Comprar / Invertir</option>
+                                    <option value="asesoria">Busco Asesoría General</option>
+                                </select>
+                                <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant/50 pointer-events-none" style="font-size:18px">expand_more</span>
+                            </div>
+                        </div>
+
+                        <div class="form-field">
+                            <label class="form-label" for="contactMessage">Mensaje u Observaciones</label>
+                            <textarea class="bg-surface-container border border-white/[0.15] text-white rounded px-4 py-3 transition-all outline-none w-full input-gold-focus resize-none placeholder:text-on-surface-variant/30" id="contactMessage" placeholder="Comentarios adicionales..." rows="3"></textarea>
+                        </div>
+                        
+                        <button class="w-full bg-gold hover:bg-gold/90 hover:shadow-[0_8px_32px_rgba(255,215,0,0.55)] hover:scale-[1.04] hover:-translate-y-0.5 text-primary-container font-label-caps text-label-caps py-4 px-8 rounded transition-all duration-200 font-bold uppercase tracking-widest shadow-[0_0_20px_rgba(255,215,0,0.1)] mt-4" type="submit">
+                            ENVIAR MENSAJE
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface-container-lowest w-full py-16 px-4 md:px-margin-desktop border-t border-white/10 relative z-30">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-gutter max-w-container-max mx-auto">
+            <div class="lg:col-span-4 space-y-6">
+                <div class="flex items-center gap-3">
+                    <img src="Logotransparente.png" alt="PyO HOMES COMERCIAL Logo" class="h-12 w-12 object-contain">
+                    <span class="font-bold text-lg text-white uppercase tracking-tight">PyO HOMES COMERCIAL</span>
+                </div>
+                <p class="font-body-md text-on-surface-variant text-sm max-w-xs leading-relaxed">
+                    Tu aliado de confianza en gestión de venta y compra inmobiliaria comerciales y residenciales de alto valor.
+                </p>
+                <div class="flex gap-4">
+                    <a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-on-surface-variant hover:text-gold hover:border-gold transition-all duration-300" href="mailto:contacto@pyohomes.cl" aria-label="Enviar Email">
+                        <span class="material-symbols-outlined text-xl">mail</span>
+                    </a>
+                    <a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-on-surface-variant hover:text-gold hover:border-gold transition-all duration-300" href="tel:+56912345678" aria-label="Llamar por teléfono">
+                        <span class="material-symbols-outlined text-xl">call</span>
+                    </a>
+                    <a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-on-surface-variant hover:text-gold hover:border-gold transition-all duration-300" href="https://maps.google.com" target="_blank" aria-label="Ubicación en mapa">
+                        <span class="material-symbols-outlined text-xl">location_on</span>
+                    </a>
+                </div>
+            </div>
+            <div class="lg:col-span-8 flex flex-col lg:items-end justify-end gap-6 lg:gap-0">
+                <div class="space-y-2 lg:text-right w-full">
+                    <p class="text-xs text-on-surface-variant/40 uppercase tracking-widest">© 2026 PyO HOMES COMERCIAL. ALL RIGHTS RESERVED. EN ALIANZA CON <a href="https://hycasociados.cl" target="_blank" rel="noopener noreferrer" class="hover:text-gold transition-colors">HYC ASOCIADOS</a>.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bottom Navigation Bar for Mobile -->
+    <nav class="lg:hidden bg-surface-container border-t border-white/10 fixed bottom-0 left-0 w-full flex justify-around items-center h-16 z-40 shadow-lg px-2">
+        <a class="text-on-surface-variant hover:text-gold flex flex-col items-center justify-center py-2 text-xs w-full transition-colors duration-300" href="#hero">
+            <span class="material-symbols-outlined text-xl">home</span>
+            <span class="text-[10px] mt-0.5">Inicio</span>
+        </a>
+        <a class="text-on-surface-variant hover:text-gold flex flex-col items-center justify-center py-2 text-xs w-full transition-colors duration-300" href="#servicios">
+            <span class="material-symbols-outlined text-xl">business_center</span>
+            <span class="text-[10px] mt-0.5">Servicios</span>
+        </a>
+        <a class="text-on-surface-variant hover:text-gold flex flex-col items-center justify-center py-2 text-xs w-full transition-colors duration-300" href="#nosotros">
+            <span class="material-symbols-outlined text-xl">person</span>
+            <span class="text-[10px] mt-0.5">Sobre Mí</span>
+        </a>
+        <a class="text-gold flex flex-col items-center justify-center py-2 text-xs w-full transition-colors duration-300 bg-white/5" href="#contacto">
+            <span class="material-symbols-outlined text-xl">chat</span>
+            <span class="text-[10px] mt-0.5">Contacto</span>
+        </a>
+    </nav>
+
+
+    <!-- Modals -->
+
+    <!-- Buyer Modal (Quiero Comprar) -->
+    <div id="buyerModal" class="fixed inset-0 z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 p-4">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-background/90 backdrop-blur-sm" onclick="closeModal('buyer')"></div>
+        <!-- Modal Content Container -->
+        <div class="relative w-full max-w-2xl bg-luxury-blue border border-white/10 rounded-lg shadow-2xl overflow-hidden flex flex-col max-h-[90vh] modal-transition transform scale-95 z-10">
+            <!-- Header -->
+            <div class="flex items-center justify-between p-6 border-b border-white/10 shrink-0">
+                <h2 class="font-headline-md text-xl md:text-2xl text-gold font-bold tracking-tight">Quiero Comprar / Invertir</h2>
+                <button aria-label="Cerrar modal" onclick="closeModal('buyer')" class="text-on-surface-variant hover:text-gold hover:scale-125 transition-all duration-200">
+                    <span class="material-symbols-outlined text-2xl">close</span>
+                </button>
+            </div>
+            <!-- Form Content -->
+            <div class="p-6 md:p-8 overflow-y-auto grow scrollbar-hide">
+                <form id="buyerForm" onsubmit="handleFormSubmit(event, 'Solicitud de Compra / Inversión')" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Full Name -->
+                        <div class="form-field">
+                            <label class="form-label" for="buyerName">Nombre Completo *</label>
+                            <div class="relative">
+                                <span class="material-symbols-outlined form-icon">person</span>
+                                <input class="w-full bg-background border border-white/[0.15] rounded pl-10 pr-4 py-3 text-on-surface text-sm md:text-base input-gold-focus transition-all placeholder:text-on-surface-variant/30" id="buyerName" name="buyerName" placeholder="Ej. Juan Pérez" required type="text"/>
+                            </div>
+                        </div>
+                        <!-- Phone Number -->
+                        <div class="form-field">
+                            <label class="form-label" for="buyerPhone">Teléfono *</label>
+                            <div class="relative">
+                                <span class="material-symbols-outlined form-icon">phone</span>
+                                <span class="absolute left-9 top-1/2 -translate-y-1/2 text-on-surface-variant/60 text-sm select-none">+56</span>
+                                <input class="w-full bg-background border border-white/[0.15] rounded pl-[4.5rem] pr-4 py-3 text-on-surface text-sm md:text-base input-gold-focus transition-all placeholder:text-on-surface-variant/30" id="buyerPhone" name="buyerPhone" placeholder="9 1234 5678" required type="tel"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Email Address -->
+                        <div class="form-field">
+                            <label class="form-label" for="buyerEmail">Correo Electrónico *</label>
+                            <div class="relative">
+                                <span class="material-symbols-outlined form-icon">alternate_email</span>
+                                <input class="w-full bg-background border border-white/[0.15] rounded pl-10 pr-4 py-3 text-on-surface text-sm md:text-base input-gold-focus transition-all placeholder:text-on-surface-variant/30" id="buyerEmail" name="buyerEmail" placeholder="correo@empresa.com" required type="email"/>
+                            </div>
+                        </div>
+                        <!-- Looking For -->
+                        <div class="form-field">
+                            <label class="form-label" for="buyerIntent">Busco *</label>
+                            <div class="relative">
+                                <span class="material-symbols-outlined form-icon">search</span>
+                                <select class="w-full bg-background border border-white/[0.15] rounded pl-10 pr-10 py-3 text-on-surface text-sm md:text-base input-gold-focus appearance-none transition-all" id="buyerIntent" name="buyerIntent" required>
+                                    <option disabled selected value="">Seleccione una opción...</option>
+                                    <option value="buy">Comprar</option>
+                                    <option value="rent">Arrendar</option>
+                                </select>
+                                <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant/50 pointer-events-none" style="font-size:18px">expand_more</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Preferred Zone -->
+                        <div class="form-field">
+                            <label class="form-label" for="buyerZone">Zona de Preferencia</label>
+                            <div class="relative">
+                                <span class="material-symbols-outlined form-icon">location_on</span>
+                                <input class="w-full bg-background border border-white/[0.15] rounded pl-10 pr-4 py-3 text-on-surface text-sm md:text-base input-gold-focus transition-all placeholder:text-on-surface-variant/30" id="buyerZone" name="buyerZone" placeholder="Ej. Quillota Centro, Limache..." type="text"/>
+                            </div>
+                        </div>
+                        <!-- Max Budget -->
+                        <div class="form-field">
+                            <label class="form-label" for="buyerBudget">Presupuesto Estimado</label>
+                            <div class="relative">
+                                <span class="material-symbols-outlined form-icon">payments</span>
+                                <input class="w-full bg-background border border-white/[0.15] rounded pl-10 pr-4 py-3 text-on-surface text-sm md:text-base input-gold-focus transition-all placeholder:text-on-surface-variant/30" id="buyerBudget" name="buyerBudget" placeholder="Ej. UF 5.000" type="text"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Specific Requirements -->
+                    <div class="form-field">
+                        <label class="form-label" for="buyerRequirements">Requerimientos Específicos</label>
+                        <textarea class="w-full bg-background border border-white/[0.15] rounded px-4 py-3 text-on-surface text-sm md:text-base input-gold-focus transition-all resize-none placeholder:text-on-surface-variant/30" id="buyerRequirements" name="buyerRequirements" placeholder="Describa el tipo de propiedad comercial o residencial que necesita..." rows="3"></textarea>
+                    </div>
+                    
+                    <!-- Submit button inside overflow form -->
+                    <div class="pt-4">
+                        <button class="w-full bg-gold text-[#081425] font-label-caps text-label-caps font-bold py-4 px-6 rounded uppercase tracking-widest hover:bg-gold/90 hover:shadow-[0_8px_32px_rgba(255,215,0,0.55)] hover:scale-[1.04] hover:-translate-y-0.5 transition-all duration-200 shadow-lg" type="submit">
+                            ENVIAR SOLICITUD DE BÚSQUEDA
+                        </button>
+                        <p class="text-center font-body-md text-xs text-on-surface-variant mt-3 uppercase tracking-wider">
+                            Su solicitud será analizada con absoluta confidencialidad.
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seller Modal (Quiero Vender) -->
+    <div id="sellerModal" class="fixed inset-0 z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 p-4">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-background/90 backdrop-blur-sm" onclick="closeModal('seller')"></div>
+        <!-- Modal Content Container -->
+        <div class="relative w-full max-w-4xl bg-surface-container-lowest border border-white/10 rounded-lg shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[90vh] modal-transition transform scale-95 z-10">
+            
+            <!-- Left Side Panel (Desktop only) -->
+            <div class="hidden md:flex md:w-5/12 relative bg-surface-container-high border-r border-white/10 flex-col justify-end p-8">
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000')] bg-cover bg-center opacity-50 z-0"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent z-10"></div>
+                
+                <div class="relative z-20 space-y-3">
+                    <span class="material-symbols-outlined text-4xl text-gold">real_estate_agent</span>
+                    <h3 class="font-headline-md text-2xl font-bold text-white leading-tight">Venda con Nosotros</h3>
+                    <p class="font-body-md text-sm text-on-surface-variant leading-relaxed">
+                        Acceda a nuestro plan estratégico de venta, diseñado para posicionar su propiedad frente a los perfiles más calificados y activos en el mercado comercial de la zona.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Right Side Panel / Form -->
+            <div class="w-full md:w-7/12 p-6 md:p-10 flex flex-col overflow-y-auto max-h-[90vh]">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="font-headline-lg-mobile text-xl md:text-2xl font-bold text-white uppercase tracking-tight">Quiero Vender</h2>
+                    <button aria-label="Cerrar modal" onclick="closeModal('seller')" class="text-on-surface-variant hover:text-gold hover:scale-125 transition-all duration-200">
+                        <span class="material-symbols-outlined text-2xl">close</span>
+                    </button>
+                </div>
+                <p class="text-on-surface-variant text-sm mb-6 leading-relaxed">Complete el formulario para solicitar una evaluación comercial detallada sin costo.</p>
+                
+                <form id="sellerForm" onsubmit="handleFormSubmit(event, 'Solicitud de Evaluación de Venta')" class="space-y-5">
+                    <!-- Full Name -->
+                    <div class="form-field">
+                        <label class="form-label" for="sellerName">Nombre Completo *</label>
+                        <div class="relative">
+                            <span class="material-symbols-outlined form-icon">person</span>
+                            <input class="w-full bg-primary-container/30 border border-white/[0.15] rounded pl-10 pr-4 py-3 text-on-surface text-sm md:text-base placeholder:text-on-surface-variant/30 input-gold-focus transition-all" id="sellerName" placeholder="Ej. Juan Pérez" required type="text"/>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <!-- Phone -->
+                        <div class="form-field">
+                            <label class="form-label" for="sellerPhone">Teléfono *</label>
+                            <div class="relative">
+                                <span class="material-symbols-outlined form-icon">phone</span>
+                                <span class="absolute left-9 top-1/2 -translate-y-1/2 text-on-surface-variant/60 text-sm font-medium select-none">+56</span>
+                                <input class="w-full bg-primary-container/30 border border-white/[0.15] rounded pl-[4.5rem] pr-4 py-3 text-on-surface text-sm md:text-base placeholder:text-on-surface-variant/30 input-gold-focus transition-all" id="sellerPhone" placeholder="9 1234 5678" required type="tel"/>
+                            </div>
+                        </div>
+                        <!-- Email -->
+                        <div class="form-field">
+                            <label class="form-label" for="sellerEmail">Correo Electrónico *</label>
+                            <div class="relative">
+                                <span class="material-symbols-outlined form-icon">alternate_email</span>
+                                <input class="w-full bg-primary-container/30 border border-white/[0.15] rounded pl-10 pr-4 py-3 text-on-surface text-sm md:text-base placeholder:text-on-surface-variant/30 input-gold-focus transition-all" id="sellerEmail" placeholder="correo@empresa.com" required type="email"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <!-- Property Type -->
+                        <div class="form-field">
+                            <label class="form-label" for="sellerPropertyType">Tipo de Propiedad *</label>
+                            <div class="relative">
+                                <span class="material-symbols-outlined form-icon">home_work</span>
+                                <select class="w-full bg-primary-container/30 border border-white/[0.15] rounded pl-10 pr-10 py-3 text-on-surface appearance-none text-sm md:text-base input-gold-focus transition-all" id="sellerPropertyType" required>
+                                    <option class="bg-surface-container-highest text-on-surface-variant" disabled selected value="">Seleccione...</option>
+                                    <option class="bg-surface-container-highest text-on-surface" value="departamento">Departamento</option>
+                                    <option class="bg-surface-container-highest text-on-surface" value="casa">Casa Habitacional</option>
+                                    <option class="bg-surface-container-highest text-on-surface" value="oficina">Oficina</option>
+                                    <option class="bg-surface-container-highest text-on-surface" value="local">Local Comercial</option>
+                                    <option class="bg-surface-container-highest text-on-surface" value="parcela">Parcela</option>
+                                    <option class="bg-surface-container-highest text-on-surface" value="terreno">Terreno</option>
+                                    <option class="bg-surface-container-highest text-on-surface" value="sitio">Sitio</option>
+                                    <option class="bg-surface-container-highest text-on-surface" value="bodega">Bodega</option>
+                                    <option class="bg-surface-container-highest text-on-surface" value="industrial">Industriales</option>
+                                    <option class="bg-surface-container-highest text-on-surface" value="agricola">Agrícolas</option>
+                                    <option class="bg-surface-container-highest text-on-surface" value="estacionamiento">Estacionamientos</option>
+                                    <option class="bg-surface-container-highest text-on-surface" value="cementerio">Lotes de Cementerio</option>
+                                    <option class="bg-surface-container-highest text-on-surface" value="loteo">Loteos</option>
+                                    <option class="bg-surface-container-highest text-on-surface" value="otros">Otros Inmuebles</option>
+                                </select>
+                                <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant/50 pointer-events-none" style="font-size:18px">expand_more</span>
+                            </div>
+                        </div>
+                        <!-- Location -->
+                        <div class="form-field">
+                            <label class="form-label" for="sellerLocation">Dirección *</label>
+                            <div class="relative">
+                                <span class="material-symbols-outlined form-icon">location_on</span>
+                                <input class="w-full bg-primary-container/30 border border-white/[0.15] rounded pl-10 pr-4 py-3 text-on-surface text-sm md:text-base placeholder:text-on-surface-variant/30 input-gold-focus transition-all" id="sellerLocation" placeholder="Ej. Av. Principal 123, Quillota" required type="text"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comments -->
+                    <div class="form-field">
+                        <label class="form-label" for="sellerComments">Comentarios o Detalles</label>
+                        <textarea class="w-full bg-primary-container/30 border border-white/[0.15] rounded px-4 py-3 text-on-surface text-sm md:text-base placeholder:text-on-surface-variant/30 resize-none input-gold-focus transition-all" id="sellerComments" placeholder="Escriba brevemente sobre dimensiones, UF deseado o estado..." rows="2"></textarea>
+                    </div>
+                    
+                    <button class="w-full bg-gold hover:bg-gold/90 hover:shadow-[0_8px_32px_rgba(255,215,0,0.55)] hover:scale-[1.04] hover:-translate-y-0.5 text-primary-container font-label-caps text-label-caps py-4 px-8 rounded transition-all duration-200 font-bold tracking-widest flex items-center justify-center gap-2 group shadow-[0_0_20px_rgba(255,215,0,0.1)]" type="submit">
+                        <span>SOLICITAR EVALUACIÓN COMERCIAL</span>
+                        <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </button>
+                    
+                    <p class="text-center font-label-caps text-[10px] text-on-surface-variant/60 uppercase tracking-widest mt-2">
+                        Su información es tratada bajo estricta confidencialidad profesional.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="fixed inset-0 z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 p-4 md:p-10">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-background/95 backdrop-blur-md" onclick="closeVideo()"></div>
+        <!-- Video Container -->
+        <div class="relative w-full max-w-4xl bg-black rounded-lg overflow-hidden shadow-2xl modal-transition transform scale-95 z-10 flex flex-col">
+            <div class="absolute top-4 right-4 z-25 flex items-center gap-3">
+                <button aria-label="Cerrar video" onclick="closeVideo()" class="bg-black/50 text-white hover:text-gold hover:scale-125 p-2.5 rounded-full transition-all duration-200 backdrop-blur-sm z-30">
+                    <span class="material-symbols-outlined text-2xl">close</span>
+                </button>
+            </div>
+            <div class="aspect-video w-full relative">
+                <!-- HTML5 video player -->
+                <video id="modalVideoPlayer" class="w-full h-full" controls preload="auto">
+                    <source id="videoSource" src="" type="video/mp4">
+                    Su navegador no soporta reproducción de videos HTML5.
+                </video>
+            </div>
+            <div class="bg-surface-container-lowest p-6 border-t border-white/10 text-left shrink-0">
+                <h3 id="videoModalTitle" class="text-white font-bold text-lg md:text-xl">Testimonio Inmobiliario</h3>
+                <p class="text-on-surface-variant text-sm mt-1">PyO Homes Comercial - Satisfacción Garantizada</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Toast Notification (Success state) -->
+    <div id="successToast" class="fixed bottom-20 md:bottom-8 right-4 md:right-8 bg-surface-container-lowest border border-gold/30 rounded shadow-2xl p-5 flex items-start gap-4 max-w-sm transform translate-y-12 opacity-0 pointer-events-none transition-all duration-300 z-50">
+        <div class="w-8 h-8 rounded-full bg-gold/15 flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined text-gold font-bold">check</span>
+        </div>
+        <div class="space-y-1 text-left">
+            <h4 class="text-white font-bold text-sm">¡Solicitud Enviada!</h4>
+            <p id="successToastMsg" class="text-on-surface-variant text-xs leading-relaxed">Hemos recibido sus datos con éxito. Un agente le contactará a la brevedad.</p>
+        </div>
+        <button aria-label="Cerrar notificación" onclick="hideToast()" class="text-on-surface-variant hover:text-gold hover:scale-125 transition-all duration-200">
+            <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+    </div>
+
+
+    <!-- Core Scripts -->
+    <script>
+        // Scroll lock helpers — compensate scrollbar width to prevent layout shift
+        function lockBodyScroll() {
+            const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+            if (scrollbarWidth > 0) {
+                document.body.style.paddingRight = scrollbarWidth + 'px';
+                const topNav = document.querySelector('nav');
+                if (topNav) {
+                    const currentPR = parseFloat(getComputedStyle(topNav).paddingRight) || 0;
+                    topNav.style.paddingRight = (currentPR + scrollbarWidth) + 'px';
+                }
+            }
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function unlockBodyScroll() {
+            document.body.style.paddingRight = '';
+            document.body.classList.remove('overflow-hidden');
+            const topNav = document.querySelector('nav');
+            if (topNav) topNav.style.paddingRight = '';
+        }
+
+        // Modal State Controls
+        function openModal(type) {
+            const modalId = type === 'vender' ? 'sellerModal' : 'buyerModal';
+            const modal = document.getElementById(modalId);
+            if (!modal) return;
+
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            const container = modal.querySelector('.modal-transition');
+            if (container) {
+                container.classList.remove('scale-95');
+                container.classList.add('scale-100');
+            }
+            lockBodyScroll();
+        }
+
+        function closeModal(type) {
+            const modalId = type === 'seller' ? 'sellerModal' : 'buyerModal';
+            const modal = document.getElementById(modalId);
+            if (!modal) return;
+
+            const container = modal.querySelector('.modal-transition');
+            if (container) {
+                container.classList.remove('scale-100');
+                container.classList.add('scale-95');
+            }
+            modal.classList.add('opacity-0', 'pointer-events-none');
+
+            // Allow animation to complete before removing body lock
+            setTimeout(() => {
+                if (document.getElementById('sellerModal').classList.contains('opacity-0') &&
+                    document.getElementById('buyerModal').classList.contains('opacity-0') &&
+                    document.getElementById('videoModal').classList.contains('opacity-0')) {
+                    unlockBodyScroll();
+                }
+            }, 300);
+        }
+
+        // Testimonial Video controls
+        function openVideo(videoUrl, title) {
+            const modal = document.getElementById('videoModal');
+            const player = document.getElementById('modalVideoPlayer');
+            const source = document.getElementById('videoSource');
+            const titleEl = document.getElementById('videoModalTitle');
+
+            if (!modal || !player || !source) return;
+
+            titleEl.textContent = title;
+            source.src = videoUrl;
+            player.load();
+
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            const container = modal.querySelector('.modal-transition');
+            if (container) {
+                container.classList.remove('scale-95');
+                container.classList.add('scale-100');
+            }
+
+            lockBodyScroll();
+
+            // Play video after a brief transition delay
+            setTimeout(() => {
+                player.play().catch(e => console.log('Auto-play blocked, waiting for user click.'));
+            }, 300);
+        }
+
+        function closeVideo() {
+            const modal = document.getElementById('videoModal');
+            const player = document.getElementById('modalVideoPlayer');
+            if (!modal || !player) return;
+
+            player.pause();
+
+            const container = modal.querySelector('.modal-transition');
+            if (container) {
+                container.classList.remove('scale-100');
+                container.classList.add('scale-95');
+            }
+            modal.classList.add('opacity-0', 'pointer-events-none');
+
+            setTimeout(() => {
+                if (document.getElementById('sellerModal').classList.contains('opacity-0') &&
+                    document.getElementById('buyerModal').classList.contains('opacity-0')) {
+                    unlockBodyScroll();
+                }
+            }, 300);
+        }
+
+        // Mobile drawer menu controls
+        function toggleMobileMenu(open) {
+            const overlay = document.getElementById('mobileDrawerOverlay');
+            const drawer = document.getElementById('mobileDrawer');
+            
+            if (open) {
+                overlay.classList.remove('opacity-0', 'pointer-events-none');
+                overlay.classList.add('opacity-100');
+                drawer.classList.remove('translate-x-full');
+                drawer.classList.add('translate-x-0');
+            } else {
+                overlay.classList.remove('opacity-100');
+                overlay.classList.add('opacity-0', 'pointer-events-none');
+                drawer.classList.remove('translate-x-0');
+                drawer.classList.add('translate-x-full');
+            }
+        }
+
+        // Form Submission Interception & Validation
+        function handleFormSubmit(event, formName) {
+            event.preventDefault();
+            const form = event.target;
+            
+            // Basic values extraction
+            let nameVal = "";
+            if (form.querySelector('input[type="text"]')) {
+                nameVal = form.querySelector('input[type="text"]').value;
+            }
+            
+            // Perform basic animations & close modals
+            if (form.id === 'buyerForm') {
+                closeModal('buyer');
+            } else if (form.id === 'sellerForm') {
+                closeModal('seller');
+            }
+            
+            // Show custom toast message
+            showToast(nameVal ? `¡Gracias, ${nameVal}! Hemos recibido tu ${formName} correctamente.` : `¡Solicitud recibida! Un agente le contactará a la brevedad.`);
+            
+            // Reset form fields
+            form.reset();
+        }
+
+        // Toast Messages
+        let toastTimeout;
+        function showToast(message) {
+            const toast = document.getElementById('successToast');
+            const toastMsg = document.getElementById('successToastMsg');
+            if (!toast || !toastMsg) return;
+            
+            toastMsg.textContent = message;
+            toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-12');
+            toast.classList.add('opacity-100', 'translate-y-0');
+            
+            // Clear any existing timer
+            clearTimeout(toastTimeout);
+            
+            // Hide toast after 5 seconds
+            toastTimeout = setTimeout(() => {
+                hideToast();
+            }, 5000);
+        }
+
+        function hideToast() {
+            const toast = document.getElementById('successToast');
+            if (!toast) return;
+            toast.classList.remove('opacity-100', 'translate-y-0');
+            toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-12');
+        }
+
+        // Scroll reveal — Intersection Observer
+        (function () {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                });
+            }, { threshold: 0.12 });
+
+            // Observe individual .reveal elements
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+            // Observe staggered grids: each child gets reveal + incremental delay
+            document.querySelectorAll('.reveal-stagger').forEach(container => {
+                Array.from(container.children).forEach((child, i) => {
+                    child.classList.add('reveal');
+                    child.style.transitionDelay = `${i * 120}ms`;
+                    observer.observe(child);
+                });
+            });
+        })();
+
+        // ESC Key listener to close modal overlays
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal('buyer');
+                closeModal('seller');
+                closeVideo();
+                toggleMobileMenu(false);
+            }
+        });
+
+        // Sticky nav class modifier on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 40) {
+                nav.classList.add('shadow-xl', 'bg-background/95', 'border-b', 'border-white/15');
+                nav.classList.remove('bg-background/85', 'border-b', 'border-white/10');
+            } else {
+                nav.classList.add('bg-background/85', 'border-b', 'border-white/10');
+                nav.classList.remove('shadow-xl', 'bg-background/95', 'border-b', 'border-white/15');
+            }
+            
+            // Active Nav Link Scroll Spy
+            const sections = document.querySelectorAll('section, main');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = "";
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 120) {
+                    current = section.getAttribute("id");
+                }
+            });
+            
+            navLinks.forEach((link) => {
+                link.classList.remove('text-gold');
+                link.classList.add('text-on-surface-variant');
+                if (link.getAttribute("href") === `#${current}`) {
+                    link.classList.remove('text-on-surface-variant');
+                    link.classList.add('text-gold');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

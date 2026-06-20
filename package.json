@@ -1,0 +1,15 @@
+{
+  "name": "pyo-homes-comercial",
+  "version": "1.0.0",
+  "description": "Landing page PyO Homes Comercial — estrategia inmobiliaria en Valparaíso",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

@@ -1,0 +1,24 @@
+'use strict';
+
+const express = require('express');
+const path = require('path');
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Serve static assets from /public
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Health check — required by EasyPanel
+app.get('/health', (_req, res) => {
+    res.status(200).json({ status: 'ok' });
+});
+
+// Fallback: serve index.html for any unmatched route (SPA-style)
+app.get('*', (_req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.listen(PORT, () => {
+    console.log(`PyO Homes Comercial — servidor corriendo en puerto ${PORT}`);
+});
