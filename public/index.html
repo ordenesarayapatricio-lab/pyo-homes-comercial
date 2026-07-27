@@ -8,7 +8,10 @@
     
     <!-- Tailwind CSS CDN with plugins -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    
+
+    <!-- Supabase Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -478,7 +481,7 @@
                                 <label class="form-label" for="contactName">Nombre Completo *</label>
                                 <div class="relative">
                                     <span class="material-symbols-outlined form-icon">person</span>
-                                    <input class="bg-surface-container border border-white/[0.15] text-white rounded pl-10 pr-3 py-3 transition-all outline-none w-full input-gold-focus placeholder:text-on-surface-variant/30" id="contactName" placeholder="Ej. Juan Pérez" required type="text">
+                                    <input class="bg-surface-container border border-white/[0.15] text-white rounded pl-10 pr-3 py-3 transition-all outline-none w-full input-gold-focus placeholder:text-on-surface-variant/30" id="contactName" name="contactName" placeholder="Ej. Juan Pérez" required type="text">
                                 </div>
                             </div>
                             <div class="form-field">
@@ -486,7 +489,7 @@
                                 <div class="relative">
                                     <span class="material-symbols-outlined form-icon">phone</span>
                                     <span class="absolute left-9 top-1/2 -translate-y-1/2 text-on-surface-variant/60 font-medium text-sm select-none">+56</span>
-                                    <input class="bg-surface-container border border-white/[0.15] text-white rounded pl-[4.5rem] pr-3 py-3 transition-all outline-none w-full input-gold-focus placeholder:text-on-surface-variant/30" id="contactPhone" placeholder="9 1234 5678" required type="tel">
+                                    <input class="bg-surface-container border border-white/[0.15] text-white rounded pl-[4.5rem] pr-3 py-3 transition-all outline-none w-full input-gold-focus placeholder:text-on-surface-variant/30" id="contactPhone" name="contactPhone" placeholder="9 1234 5678" required type="tel">
                                 </div>
                             </div>
                         </div>
@@ -495,7 +498,7 @@
                             <label class="form-label" for="contactEmail">Correo Electrónico *</label>
                             <div class="relative">
                                 <span class="material-symbols-outlined form-icon">alternate_email</span>
-                                <input class="bg-surface-container border border-white/[0.15] text-white rounded pl-10 pr-3 py-3 transition-all outline-none w-full input-gold-focus placeholder:text-on-surface-variant/30" id="contactEmail" placeholder="correo@empresa.com" required type="email">
+                                <input class="bg-surface-container border border-white/[0.15] text-white rounded pl-10 pr-3 py-3 transition-all outline-none w-full input-gold-focus placeholder:text-on-surface-variant/30" id="contactEmail" name="contactEmail" placeholder="correo@empresa.com" required type="email">
                             </div>
                         </div>
 
@@ -503,7 +506,7 @@
                             <label class="form-label" for="contactInterest">Me interesa *</label>
                             <div class="relative">
                                 <span class="material-symbols-outlined form-icon">tune</span>
-                                <select class="bg-surface-container border border-white/[0.15] text-white rounded pl-10 pr-10 py-3 transition-all outline-none w-full appearance-none input-gold-focus" id="contactInterest" required>
+                                <select class="bg-surface-container border border-white/[0.15] text-white rounded pl-10 pr-10 py-3 transition-all outline-none w-full appearance-none input-gold-focus" id="contactInterest" name="contactInterest" required>
                                     <option value="vender">Quiero Vender mi Propiedad</option>
                                     <option value="comprar">Quiero Comprar / Invertir</option>
                                     <option value="asesoria">Busco Asesoría General</option>
@@ -514,7 +517,7 @@
 
                         <div class="form-field">
                             <label class="form-label" for="contactMessage">Mensaje u Observaciones</label>
-                            <textarea class="bg-surface-container border border-white/[0.15] text-white rounded px-4 py-3 transition-all outline-none w-full input-gold-focus resize-none placeholder:text-on-surface-variant/30" id="contactMessage" placeholder="Comentarios adicionales..." rows="3"></textarea>
+                            <textarea class="bg-surface-container border border-white/[0.15] text-white rounded px-4 py-3 transition-all outline-none w-full input-gold-focus resize-none placeholder:text-on-surface-variant/30" id="contactMessage" name="contactMessage" placeholder="Comentarios adicionales..." rows="3"></textarea>
                         </div>
                         
                         <button class="w-full bg-gold hover:bg-gold/90 hover:shadow-[0_8px_32px_rgba(255,215,0,0.55)] hover:scale-[1.04] hover:-translate-y-0.5 text-primary-container font-label-caps text-label-caps py-4 px-8 rounded transition-all duration-200 font-bold uppercase tracking-widest shadow-[0_0_20px_rgba(255,215,0,0.1)] mt-4" type="submit">
@@ -717,7 +720,7 @@
                         <label class="form-label" for="sellerName">Nombre Completo *</label>
                         <div class="relative">
                             <span class="material-symbols-outlined form-icon">person</span>
-                            <input class="w-full bg-primary-container/30 border border-white/[0.15] rounded pl-10 pr-4 py-3 text-on-surface text-sm md:text-base placeholder:text-on-surface-variant/30 input-gold-focus transition-all" id="sellerName" placeholder="Ej. Juan Pérez" required type="text"/>
+                            <input class="w-full bg-primary-container/30 border border-white/[0.15] rounded pl-10 pr-4 py-3 text-on-surface text-sm md:text-base placeholder:text-on-surface-variant/30 input-gold-focus transition-all" id="sellerName" name="sellerName" placeholder="Ej. Juan Pérez" required type="text"/>
                         </div>
                     </div>
 
@@ -728,7 +731,7 @@
                             <div class="relative">
                                 <span class="material-symbols-outlined form-icon">phone</span>
                                 <span class="absolute left-9 top-1/2 -translate-y-1/2 text-on-surface-variant/60 text-sm font-medium select-none">+56</span>
-                                <input class="w-full bg-primary-container/30 border border-white/[0.15] rounded pl-[4.5rem] pr-4 py-3 text-on-surface text-sm md:text-base placeholder:text-on-surface-variant/30 input-gold-focus transition-all" id="sellerPhone" placeholder="9 1234 5678" required type="tel"/>
+                                <input class="w-full bg-primary-container/30 border border-white/[0.15] rounded pl-[4.5rem] pr-4 py-3 text-on-surface text-sm md:text-base placeholder:text-on-surface-variant/30 input-gold-focus transition-all" id="sellerPhone" name="sellerPhone" placeholder="9 1234 5678" required type="tel"/>
                             </div>
                         </div>
                         <!-- Email -->
@@ -736,7 +739,7 @@
                             <label class="form-label" for="sellerEmail">Correo Electrónico *</label>
                             <div class="relative">
                                 <span class="material-symbols-outlined form-icon">alternate_email</span>
-                                <input class="w-full bg-primary-container/30 border border-white/[0.15] rounded pl-10 pr-4 py-3 text-on-surface text-sm md:text-base placeholder:text-on-surface-variant/30 input-gold-focus transition-all" id="sellerEmail" placeholder="correo@empresa.com" required type="email"/>
+                                <input class="w-full bg-primary-container/30 border border-white/[0.15] rounded pl-10 pr-4 py-3 text-on-surface text-sm md:text-base placeholder:text-on-surface-variant/30 input-gold-focus transition-all" id="sellerEmail" name="sellerEmail" placeholder="correo@empresa.com" required type="email"/>
                             </div>
                         </div>
                     </div>
@@ -747,7 +750,7 @@
                             <label class="form-label" for="sellerPropertyType">Tipo de Propiedad *</label>
                             <div class="relative">
                                 <span class="material-symbols-outlined form-icon">home_work</span>
-                                <select class="w-full bg-primary-container/30 border border-white/[0.15] rounded pl-10 pr-10 py-3 text-on-surface appearance-none text-sm md:text-base input-gold-focus transition-all" id="sellerPropertyType" required>
+                                <select class="w-full bg-primary-container/30 border border-white/[0.15] rounded pl-10 pr-10 py-3 text-on-surface appearance-none text-sm md:text-base input-gold-focus transition-all" id="sellerPropertyType" name="sellerPropertyType" required>
                                     <option class="bg-surface-container-highest text-on-surface-variant" disabled selected value="">Seleccione...</option>
                                     <option class="bg-surface-container-highest text-on-surface" value="departamento">Departamento</option>
                                     <option class="bg-surface-container-highest text-on-surface" value="casa">Casa Habitacional</option>
@@ -771,7 +774,7 @@
                             <label class="form-label" for="sellerLocation">Dirección *</label>
                             <div class="relative">
                                 <span class="material-symbols-outlined form-icon">location_on</span>
-                                <input class="w-full bg-primary-container/30 border border-white/[0.15] rounded pl-10 pr-4 py-3 text-on-surface text-sm md:text-base placeholder:text-on-surface-variant/30 input-gold-focus transition-all" id="sellerLocation" placeholder="Ej. Av. Principal 123, Quillota" required type="text"/>
+                                <input class="w-full bg-primary-container/30 border border-white/[0.15] rounded pl-10 pr-4 py-3 text-on-surface text-sm md:text-base placeholder:text-on-surface-variant/30 input-gold-focus transition-all" id="sellerLocation" name="sellerLocation" placeholder="Ej. Av. Principal 123, Quillota" required type="text"/>
                             </div>
                         </div>
                     </div>
@@ -779,7 +782,7 @@
                     <!-- Comments -->
                     <div class="form-field">
                         <label class="form-label" for="sellerComments">Comentarios o Detalles</label>
-                        <textarea class="w-full bg-primary-container/30 border border-white/[0.15] rounded px-4 py-3 text-on-surface text-sm md:text-base placeholder:text-on-surface-variant/30 resize-none input-gold-focus transition-all" id="sellerComments" placeholder="Escriba brevemente sobre dimensiones, UF deseado o estado..." rows="2"></textarea>
+                        <textarea class="w-full bg-primary-container/30 border border-white/[0.15] rounded px-4 py-3 text-on-surface text-sm md:text-base placeholder:text-on-surface-variant/30 resize-none input-gold-focus transition-all" id="sellerComments" name="sellerComments" placeholder="Escriba brevemente sobre dimensiones, UF deseado o estado..." rows="2"></textarea>
                     </div>
                     
                     <button class="w-full bg-gold hover:bg-gold/90 hover:shadow-[0_8px_32px_rgba(255,215,0,0.55)] hover:scale-[1.04] hover:-translate-y-0.5 text-primary-container font-label-caps text-label-caps py-4 px-8 rounded transition-all duration-200 font-bold tracking-widest flex items-center justify-center gap-2 group shadow-[0_0_20px_rgba(255,215,0,0.1)]" type="submit">
@@ -821,13 +824,13 @@
     </div>
 
 
-    <!-- Toast Notification (Success state) -->
+    <!-- Toast Notification (Success/Error state) -->
     <div id="successToast" class="fixed bottom-20 md:bottom-8 right-4 md:right-8 bg-surface-container-lowest border border-gold/30 rounded shadow-2xl p-5 flex items-start gap-4 max-w-sm transform translate-y-12 opacity-0 pointer-events-none transition-all duration-300 z-50">
-        <div class="w-8 h-8 rounded-full bg-gold/15 flex items-center justify-center shrink-0">
+        <div id="successToastIcon" class="w-8 h-8 rounded-full bg-gold/15 flex items-center justify-center shrink-0">
             <span class="material-symbols-outlined text-gold font-bold">check</span>
         </div>
         <div class="space-y-1 text-left">
-            <h4 class="text-white font-bold text-sm">¡Solicitud Enviada!</h4>
+            <h4 id="successToastTitle" class="text-white font-bold text-sm">¡Solicitud Enviada!</h4>
             <p id="successToastMsg" class="text-on-surface-variant text-xs leading-relaxed">Hemos recibido sus datos con éxito. Un agente le contactará a la brevedad.</p>
         </div>
         <button aria-label="Cerrar notificación" onclick="hideToast()" class="text-on-surface-variant hover:text-gold hover:scale-125 transition-all duration-200">
@@ -838,6 +841,12 @@
 
     <!-- Core Scripts -->
     <script>
+        // Supabase client — anon key is public by design, protected by RLS
+        const supabaseClient = window.supabase.createClient(
+            'https://cdvhqythcysycqoybsdj.supabase.co',
+            'sb_publishable_qrZc0oIVvrrk3h0Rvc-O_A_goTEj_5I'
+        );
+
         // Scroll lock helpers — compensate scrollbar width to prevent layout shift
         function lockBodyScroll() {
             const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
@@ -964,45 +973,107 @@
             }
         }
 
-        // Form Submission Interception & Validation
-        function handleFormSubmit(event, formName) {
+        // Form Submission Interception & Validation — sends real data to Supabase
+        async function handleFormSubmit(event, formName) {
             event.preventDefault();
             const form = event.target;
-            
-            // Basic values extraction
-            let nameVal = "";
-            if (form.querySelector('input[type="text"]')) {
-                nameVal = form.querySelector('input[type="text"]').value;
+            const data = Object.fromEntries(new FormData(form).entries());
+            const submitButton = form.querySelector('button[type="submit"]');
+            if (submitButton) submitButton.disabled = true;
+
+            try {
+                let rpcName;
+                let rpcParams;
+                let nameForToast;
+
+                if (form.id === 'buyerForm') {
+                    rpcName = 'submit_contacto_comprador';
+                    nameForToast = data.buyerName;
+                    rpcParams = {
+                        p_nombre: data.buyerName,
+                        p_telefono: '56' + (data.buyerPhone || '').replace(/\D/g, ''),
+                        p_email: data.buyerEmail || null,
+                        p_presupuesto_uf: data.buyerBudget || null,
+                        p_zona_interes: data.buyerZone || null,
+                        p_tipo_operacion: data.buyerIntent || null,
+                        p_necesidades_clave: data.buyerRequirements || null,
+                    };
+                } else if (form.id === 'sellerForm') {
+                    rpcName = 'submit_contacto_propietario';
+                    nameForToast = data.sellerName;
+                    rpcParams = {
+                        p_nombre: data.sellerName,
+                        p_telefono: '56' + (data.sellerPhone || '').replace(/\D/g, ''),
+                        p_email: data.sellerEmail || null,
+                        p_direccion: data.sellerLocation || null,
+                        p_tipo_propiedad: data.sellerPropertyType || null,
+                        p_comentarios: data.sellerComments || null,
+                    };
+                } else if (form.id === 'contactForm') {
+                    const interestLabels = {
+                        vender: 'Quiere vender su propiedad',
+                        comprar: 'Quiere comprar/invertir',
+                        asesoria: 'Busca asesoría general',
+                    };
+                    rpcName = 'submit_contacto_general';
+                    nameForToast = data.contactName;
+                    rpcParams = {
+                        p_nombre: data.contactName,
+                        p_telefono: '56' + (data.contactPhone || '').replace(/\D/g, ''),
+                        p_email: data.contactEmail || null,
+                        p_mensaje: [interestLabels[data.contactInterest], data.contactMessage].filter(Boolean).join(' — '),
+                    };
+                } else {
+                    return;
+                }
+
+                const { error } = await supabaseClient.rpc(rpcName, rpcParams);
+                if (error) throw error;
+
+                if (form.id === 'buyerForm') {
+                    closeModal('buyer');
+                } else if (form.id === 'sellerForm') {
+                    closeModal('seller');
+                }
+
+                showToast(`¡Gracias, ${nameForToast}! Hemos recibido tu ${formName} correctamente.`, false);
+                form.reset();
+            } catch (err) {
+                console.error('Error al enviar formulario:', err);
+                showToast('No pudimos enviar tu solicitud. Por favor intenta nuevamente o contáctanos directo por WhatsApp.', true);
+            } finally {
+                if (submitButton) submitButton.disabled = false;
             }
-            
-            // Perform basic animations & close modals
-            if (form.id === 'buyerForm') {
-                closeModal('buyer');
-            } else if (form.id === 'sellerForm') {
-                closeModal('seller');
-            }
-            
-            // Show custom toast message
-            showToast(nameVal ? `¡Gracias, ${nameVal}! Hemos recibido tu ${formName} correctamente.` : `¡Solicitud recibida! Un agente le contactará a la brevedad.`);
-            
-            // Reset form fields
-            form.reset();
         }
 
         // Toast Messages
         let toastTimeout;
-        function showToast(message) {
+        function showToast(message, isError = false) {
             const toast = document.getElementById('successToast');
             const toastMsg = document.getElementById('successToastMsg');
+            const toastTitle = document.getElementById('successToastTitle');
+            const toastIcon = document.getElementById('successToastIcon');
             if (!toast || !toastMsg) return;
-            
+
             toastMsg.textContent = message;
+            if (toastTitle) toastTitle.textContent = isError ? 'Algo salió mal' : '¡Solicitud Enviada!';
+            if (toastIcon) {
+                toastIcon.classList.toggle('bg-gold/15', !isError);
+                toastIcon.classList.toggle('bg-error/15', isError);
+                const iconSpan = toastIcon.querySelector('span');
+                if (iconSpan) {
+                    iconSpan.classList.toggle('text-gold', !isError);
+                    iconSpan.classList.toggle('text-error', isError);
+                    iconSpan.textContent = isError ? 'error' : 'check';
+                }
+            }
+
             toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-12');
             toast.classList.add('opacity-100', 'translate-y-0');
-            
+
             // Clear any existing timer
             clearTimeout(toastTimeout);
-            
+
             // Hide toast after 5 seconds
             toastTimeout = setTimeout(() => {
                 hideToast();
