@@ -1,5 +1,5 @@
 # ── Stage 1: install server dependencies ─────────────────────────────────────
-FROM node:20-alpine AS builder
+FROM node:22-alpine AS builder
 
 WORKDIR /app
 
@@ -7,7 +7,7 @@ COPY package.json package-lock.json ./
 RUN npm ci --only=production
 
 # ── Stage 2: build the CRM dashboard (React + Vite) ─────────────────────────
-FROM node:20-alpine AS dashboard-builder
+FROM node:22-alpine AS dashboard-builder
 
 WORKDIR /app/dashboard
 
@@ -25,7 +25,7 @@ COPY dashboard/ ./
 RUN npm run build
 
 # ── Stage 3: runtime ──────────────────────────────────────────────────────────
-FROM node:20-alpine AS runtime
+FROM node:22-alpine AS runtime
 
 WORKDIR /app
 
