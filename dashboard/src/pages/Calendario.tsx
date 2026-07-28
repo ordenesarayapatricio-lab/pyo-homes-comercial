@@ -1,8 +1,7 @@
 import { useMemo, useState } from "react";
 import { DndContext, PointerSensor, useDraggable, useDroppable, useSensor, useSensors, type DragEndEvent } from "@dnd-kit/core";
 import { useCalendario, TIPO_EVENTO_COLOR, TIPO_EVENTO_LABEL, type CalendarEvent, type CalendarEventType } from "../hooks/useCalendario";
-import { useActivitiesBoard, type ActivityCard } from "../hooks/useActivitiesBoard";
-import { useLeads } from "../hooks/useLeads";
+import type { ActivityCard } from "../hooks/useActivitiesBoard";
 import { DiaDetallePanel } from "../components/calendario/DiaDetallePanel";
 
 const MESES = [
@@ -93,9 +92,7 @@ function DiaCelda({ fecha, esHoy, eventos, onAbrir }: DiaCeldaProps) {
 }
 
 export function Calendario() {
-  const { events, loading } = useCalendario();
-  const { cards, updateCard } = useActivitiesBoard();
-  const { leads } = useLeads();
+  const { events, loading, cards, updateCard, leads } = useCalendario();
   const [cursor, setCursor] = useState(() => {
     const hoy = new Date();
     return new Date(hoy.getFullYear(), hoy.getMonth(), 1);

@@ -45,7 +45,13 @@ function daysSince(dateStr: string | null): number | null {
 }
 
 export function useCalendario() {
-  const { cards, loading: loadingActividades } = useActivitiesBoard();
+  // Una sola instancia de cada hook, compartida entre el listado de eventos y la
+  // mutación de reagendar (arrastrar y soltar) — si Calendario.tsx abriera su propia
+  // instancia aparte de useActivitiesBoard()/useLeads(), un cambio hecho a través de
+  // esa segunda instancia (ej. updateCard) refrescaría SU PROPIO estado interno, pero
+  // esta instancia de acá (la que realmente arma `events`) nunca se enteraría, y los
+  // chips se verían desactualizados hasta recargar la página.
+  const { cards, updateCard, loading: loadingActividades } = useActivitiesBoard();
   const { leads, loading: loadingLeads } = useLeads();
   const { leads: captaciones, loading: loadingCaptaciones } = useCaptaciones();
   const { properties, getAllVisitas, getAllOfertas, loading: loadingProperties } = useProperties();
@@ -167,5 +173,5 @@ export function useCalendario() {
 
   const loading = loadingActividades || loadingLeads || loadingCaptaciones || loadingProperties || loadingHistorial;
 
-  return { events, loading };
+  return { events, loading, cards, updateCard, leads };
 }
