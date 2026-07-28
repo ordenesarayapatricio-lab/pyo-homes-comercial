@@ -109,41 +109,46 @@ app.get('/api/uf-hoy', async (_req, res) => {
     res.json(ufCache);
 });
 
-// Agendamiento de clientes vía Calendly: cuando un lead reserva una visita/reunión en
-// el link de Calendly compartido, Calendly avisa acá y se crea automáticamente una
-// actividad en el CRM (visible en el Calendario interno). Calendly firma cada webhook
-// (header `Calendly-Webhook-Signature`, formato "t=<timestamp>,v1=<hmac>") — se valida
-// contra CALENDLY_WEBHOOK_SIGNING_KEY antes de procesar nada, porque este endpoint queda
-// públicamente alcanzable. Si la key no está configurada todavía, no se puede verificar
-// (se deja pasar solo para no bloquear el desarrollo local — no debe quedar así en producción).
-function verifyCalendlySignature(req) {
-    const signingKey = process.env.CALENDLY_WEBHOOK_SIGNING_KEY;
-    if (!signingKey) return true;
-    const header = req.headers['calendly-webhook-signature'];
-    if (!header) return false;
-    const parts = Object.fromEntries(String(header).split(',').map((kv) => kv.split('=')));
-    if (!parts.t || !parts.v1) return false;
-    const expected = crypto.createHmac('sha256', signingKey).update(`${parts.t}.${req.rawBody}`).digest('hex');
+// Agendamiento de clientes vía Cal.com: cuando un lead reserva una visita/reunión en el
+// link de Cal.com compartido, Cal.com avisa acá y se crea automáticamente una actividad
+// en el CRM (visible en el Calendario interno). Se eligió Cal.com sobre Calendly porque
+// el plan gratuito de Calendly no incluye webhooks (requiere el plan Standard de pago);
+// Cal.com sí los incluye gratis. Cal.com firma cada webhook con HMAC-SHA256 sobre el
+// body crudo (header `X-Cal-Signature-256`, hex plano, sin el esquema "t=,v1=" de
+// Calendly) — se valida contra CAL_COM_WEBHOOK_SECRET antes de procesar nada. Si el
+// secreto no está configurado todavía, no se puede verificar (se deja pasar solo para
+// no bloquear el desarrollo local — no debe quedar así en producción).
+function verifyCalComSignature(req) {
+    const secret = process.env.CAL_COM_WEBHOOK_SECRET;
+    if (!secret) return true;
+    const received = req.headers['x-cal-signature-256'];
+    if (!received) return false;
+    const expected = crypto.createHmac('sha256', secret).update(req.rawBody).digest('hex');
     const expectedBuf = Buffer.from(expected, 'hex');
-    const receivedBuf = Buffer.from(parts.v1, 'hex');
+    const receivedBuf = Buffer.from(String(received), 'hex');
     return expectedBuf.length === receivedBuf.length && crypto.timingSafeEqual(expectedBuf, receivedBuf);
 }
 
-app.post('/api/webhooks/calendly', async (req, res) => {
-    if (!verifyCalendlySignature(req)) {
+app.post('/api/webhooks/booking', async (req, res) => {
+    if (!verifyCalComSignature(req)) {
         return res.status(401).json({ error: 'Firma inválida' });
     }
     if (!supabaseAdmin) {
-        console.warn('[calendly] SUPABASE_URL/SUPABASE_SECRET_KEY no configuradas, no se puede procesar el evento');
+        console.warn('[booking] SUPABASE_URL/SUPABASE_SECRET_KEY no configuradas, no se puede procesar el evento');
         return res.status(200).json({ processed: false });
     }
 
-    const { event, payload } = req.body || {};
+    // Log del payload crudo — Cal.com puede variar detalles del formato entre cuentas/
+    // versiones; esto permite ajustar el parseo rápido contra un evento real sin adivinar.
+    console.log('[booking] evento recibido:', JSON.stringify(req.body));
+
+    const { triggerEvent, payload } = req.body || {};
     try {
-        if (event === 'invitee.created') {
-            const email = payload?.email || null;
-            const nombre = payload?.name || 'Invitado Calendly';
-            const scheduledEvent = payload?.scheduled_event;
+        if (triggerEvent === 'BOOKING_CREATED') {
+            const attendee = payload?.attendees?.[0] || {};
+            const email = attendee.email || null;
+            const nombre = attendee.name || payload?.organizer?.name || 'Invitado';
+            const bookingUri = payload?.uid || null;
 
             let contactoId = null;
             if (email) {
@@ -170,24 +175,24 @@ app.post('/api/webhooks/calendly', async (req, res) => {
                 title: `Reunión con ${nombre}`,
                 column_id: 'todo',
                 contacto_id: contactoId,
-                scheduled_at: scheduledEvent?.start_time ?? null,
+                scheduled_at: payload?.startTime ?? null,
                 tipo_actividad: 'Visita venta y Negociación',
-                calendly_event_uri: scheduledEvent?.uri ?? null,
+                booking_event_uri: bookingUri,
             });
             if (insertCardError) throw insertCardError;
-        } else if (event === 'invitee.canceled') {
-            const scheduledEvent = payload?.scheduled_event;
-            if (scheduledEvent?.uri) {
+        } else if (triggerEvent === 'BOOKING_CANCELLED') {
+            const bookingUri = payload?.uid || null;
+            if (bookingUri) {
                 const { error: deleteError } = await supabaseAdmin
                     .from('activity_cards')
                     .delete()
-                    .eq('calendly_event_uri', scheduledEvent.uri);
+                    .eq('booking_event_uri', bookingUri);
                 if (deleteError) throw deleteError;
             }
         }
         res.status(200).json({ processed: true });
     } catch (err) {
-        console.error('[calendly] Error procesando webhook:', err.message);
+        console.error('[booking] Error procesando webhook:', err.message);
         res.status(500).json({ processed: false, error: err.message });
     }
 });
