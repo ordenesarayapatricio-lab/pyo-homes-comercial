@@ -3,6 +3,7 @@ import { DndContext, PointerSensor, useDraggable, useDroppable, useSensor, useSe
 import { useCalendario, TIPO_EVENTO_COLOR, TIPO_EVENTO_LABEL, type CalendarEvent, type CalendarEventType } from "../hooks/useCalendario";
 import type { ActivityCard } from "../hooks/useActivitiesBoard";
 import { DiaDetallePanel } from "../components/calendario/DiaDetallePanel";
+import { authHeader } from "../lib/supabaseClient";
 
 const MESES = [
   "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
@@ -125,7 +126,7 @@ export function Calendario() {
     try {
       await fetch("/api/webhooks/reagendamiento", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", ...(await authHeader()) },
         body: JSON.stringify({
           event: "activity.rescheduled",
           timestamp: new Date().toISOString(),

@@ -29,6 +29,24 @@ const supabaseAdmin =
 // Serve static assets from /public
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Estos 3 endpoints solo deben poder llamarlos usuarios ya logueados en el
+// dashboard (nunca un tercero anónimo que adivine la ruta): verifica el JWT
+// de Supabase enviado en el header Authorization contra el propio Supabase
+// Auth (no confía en el token, lo valida contra el servidor). Deja pasar solo
+// si es válido y no está expirado; si no, corta con 401 antes de tocar nada.
+async function requireDashboardAuth(req, res, next) {
+    const authHeader = req.headers.authorization || '';
+    const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null;
+    if (!token || !supabaseAdmin) {
+        return res.status(401).json({ error: 'No autorizado' });
+    }
+    const { data, error } = await supabaseAdmin.auth.getUser(token);
+    if (error || !data?.user) {
+        return res.status(401).json({ error: 'No autorizado' });
+    }
+    next();
+}
+
 // Health check — required by EasyPanel
 app.get('/health', (_req, res) => {
     res.status(200).json({ status: 'ok' });
@@ -39,7 +57,7 @@ app.get('/health', (_req, res) => {
 // al proxy de geocodificación: nunca llamar servicios de terceros desde el cliente.
 // Si N8N_NEW_LEAD_WEBHOOK_URL no está configurada, solo se loggea el payload —
 // nunca debe romper la creación del lead en el CRM.
-app.post('/api/webhooks/nuevo-lead', async (req, res) => {
+app.post('/api/webhooks/nuevo-lead', requireDashboardAuth, async (req, res) => {
     const webhookUrl = process.env.N8N_NEW_LEAD_WEBHOOK_URL;
     if (!webhookUrl) {
         console.log('[webhook nuevo-lead] N8N_NEW_LEAD_WEBHOOK_URL no configurada, payload recibido:', JSON.stringify(req.body));
@@ -64,7 +82,7 @@ app.post('/api/webhooks/nuevo-lead', async (req, res) => {
 // n8n a partir de este payload — mismo criterio que el resto de webhooks de este
 // archivo. Efecto secundario de una acción que ya se guardó en Supabase antes de
 // llamar acá, así que nunca debe bloquear ni fallar visiblemente.
-app.post('/api/webhooks/reagendamiento', async (req, res) => {
+app.post('/api/webhooks/reagendamiento', requireDashboardAuth, async (req, res) => {
     const webhookUrl = process.env.N8N_RESCHEDULE_WEBHOOK_URL;
     if (!webhookUrl) {
         console.log('[webhook reagendamiento] N8N_RESCHEDULE_WEBHOOK_URL no configurada, payload recibido:', JSON.stringify(req.body));
@@ -87,7 +105,7 @@ app.post('/api/webhooks/reagendamiento', async (req, res) => {
 // Leads ("Enviar Propiedad"). A diferencia de /nuevo-lead (efecto secundario que nunca
 // debe fallar visiblemente), esta acción SÍ es lo único que hace el botón, así que si
 // la URL está configurada y el reenvío falla, respondemos error para que el CRM lo muestre.
-app.post('/api/webhooks/campana-masiva', async (req, res) => {
+app.post('/api/webhooks/campana-masiva', requireDashboardAuth, async (req, res) => {
     const webhookUrl = process.env.N8N_BULK_CAMPAIGN_WEBHOOK_URL;
     if (!webhookUrl) {
         console.log('[webhook campana-masiva] N8N_BULK_CAMPAIGN_WEBHOOK_URL no configurada, payload recibido:', JSON.stringify(req.body));

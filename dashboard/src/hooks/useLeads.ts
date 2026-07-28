@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { supabase } from "../lib/supabaseClient";
+import { supabase, authHeader } from "../lib/supabaseClient";
 import type { EstadoWorkflow } from "../lib/mockData";
 
 const ufFormat = new Intl.NumberFormat("es-CL", { maximumFractionDigits: 0 });
@@ -579,7 +579,7 @@ async function sendBulkCampaign(leadsSeleccionados: LeadItem[], propiedad: Propi
   };
   const res = await fetch("/api/webhooks/campana-masiva", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", ...(await authHeader()) },
     body: JSON.stringify({ event: "campaign.bulk_send", timestamp: new Date().toISOString(), campaign: payload }),
   });
   if (!res.ok) throw new Error("No se pudo enviar la campaña");
@@ -612,7 +612,7 @@ async function notifyN8n(payload: N8nLeadPayload) {
   try {
     await fetch("/api/webhooks/nuevo-lead", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", ...(await authHeader()) },
       body: JSON.stringify({ event: "lead.created", timestamp: new Date().toISOString(), lead: payload }),
     });
   } catch (err) {
