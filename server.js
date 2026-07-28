@@ -58,6 +58,31 @@ app.post('/api/webhooks/nuevo-lead', async (req, res) => {
     }
 });
 
+// Notifica a n8n cuando se reagenda una actividad arrastrándola a otro día en el
+// Calendario, para que dispare un WhatsApp de confirmación al cliente ("te confirmo
+// el cambio de nuestra visita para..."). El texto exacto lo redacta el workflow de
+// n8n a partir de este payload — mismo criterio que el resto de webhooks de este
+// archivo. Efecto secundario de una acción que ya se guardó en Supabase antes de
+// llamar acá, así que nunca debe bloquear ni fallar visiblemente.
+app.post('/api/webhooks/reagendamiento', async (req, res) => {
+    const webhookUrl = process.env.N8N_RESCHEDULE_WEBHOOK_URL;
+    if (!webhookUrl) {
+        console.log('[webhook reagendamiento] N8N_RESCHEDULE_WEBHOOK_URL no configurada, payload recibido:', JSON.stringify(req.body));
+        return res.status(200).json({ forwarded: false });
+    }
+    try {
+        const response = await fetch(webhookUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(req.body),
+        });
+        res.status(200).json({ forwarded: true, status: response.status });
+    } catch (err) {
+        console.warn('[webhook reagendamiento] No se pudo reenviar a n8n:', err.message);
+        res.status(200).json({ forwarded: false, error: err.message });
+    }
+});
+
 // Notifica a n8n cuando se lanza una campaña masiva desde la selección múltiple de
 // Leads ("Enviar Propiedad"). A diferencia de /nuevo-lead (efecto secundario que nunca
 // debe fallar visiblemente), esta acción SÍ es lo único que hace el botón, así que si
