@@ -25,6 +25,7 @@ export interface Contacto {
   direccion: string | null;
   precio_venta_uf: number | null;
   estado_propiedad: string | null;
+  fecha_ingreso: string | null;
 }
 
 export interface ActivityItem {

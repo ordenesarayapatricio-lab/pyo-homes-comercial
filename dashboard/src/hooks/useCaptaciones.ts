@@ -64,6 +64,7 @@ export interface CaptacionLead {
   etapa_captacion_changed_at: string;
   fecha_ultimo_contacto: string | null;
   updated_at: string;
+  created_at: string | null;
   propiedad_id: string | null;
   contactos: { email: string | null } | null;
   propiedades_inventario: {
@@ -101,7 +102,7 @@ export const PARKING_ETAPAS: EtapaCaptacion[] = ["En Pausa", "Perdida"];
 const LEAD_SELECT = `
   id_lead, nombre_dueno, telefono, motivacion_venta, motivo_categoria, urgencia_venta,
   valor_tasacion_uf, valor_publicacion_uf, etapa_captacion, etapa_captacion_changed_at,
-  fecha_ultimo_contacto, updated_at, propiedad_id, contacto_id,
+  fecha_ultimo_contacto, updated_at, created_at, propiedad_id, contacto_id,
   contactos ( email ),
   propiedades_inventario ( id, direccion, tipo_propiedad, link_carpeta_drive, certificado_cip, certificado_gravamenes, dominio_vigente )
 `;

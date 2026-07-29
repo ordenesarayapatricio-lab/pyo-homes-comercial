@@ -45,8 +45,11 @@ export interface PropertyItem {
   bodegas: number | null;
   gastos_comunes: number | null;
   contribuciones: number | null;
+  plazo_contrato_meses: number | null;
+  meses_garantia: number | null;
   margen_negociacion_uf: number | null;
   fecha_publicacion: string | null;
+  created_at: string | null;
   link_carpeta_drive: string | null;
   link_carpeta_legal: string | null;
   link_google_maps: string | null;
@@ -105,6 +108,7 @@ const PROPERTY_SELECT = `
   id, codigo_interno, titulo, direccion, comuna, sector, rol_sii, latitud, longitud, tipo_propiedad, tipo_negocio,
   estado_propiedad, precio_venta_uf, precio_arriendo_clp, area_construida, area_terreno,
   habitaciones, banos, estacionamientos, bodegas, gastos_comunes, contribuciones,
+  plazo_contrato_meses, meses_garantia, created_at,
   margen_negociacion_uf, fecha_publicacion, link_carpeta_drive, link_carpeta_legal,
   link_google_maps, link_tour_virtual, link_portal_inmobiliario, caracteristicas_clave,
   certificado_cip, certificado_gravamenes, dominio_vigente, mandato_exclusividad,
@@ -137,8 +141,11 @@ function mapProperty(row: any): PropertyItem {
     bodegas: row.bodegas,
     gastos_comunes: row.gastos_comunes,
     contribuciones: row.contribuciones,
+    plazo_contrato_meses: row.plazo_contrato_meses,
+    meses_garantia: row.meses_garantia,
     margen_negociacion_uf: row.margen_negociacion_uf,
     fecha_publicacion: row.fecha_publicacion,
+    created_at: row.created_at,
     link_carpeta_drive: row.link_carpeta_drive,
     link_carpeta_legal: row.link_carpeta_legal,
     link_google_maps: row.link_google_maps,
@@ -238,6 +245,8 @@ export function useProperties() {
         | "bodegas"
         | "gastos_comunes"
         | "contribuciones"
+        | "plazo_contrato_meses"
+        | "meses_garantia"
         | "margen_negociacion_uf"
         | "fecha_publicacion"
         | "link_carpeta_drive"

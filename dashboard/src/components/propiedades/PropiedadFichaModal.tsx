@@ -67,6 +67,8 @@ const EDITABLE_KEYS = [
   "bodegas",
   "gastos_comunes",
   "contribuciones",
+  "plazo_contrato_meses",
+  "meses_garantia",
   "margen_negociacion_uf",
   "fecha_publicacion",
   "link_carpeta_drive",

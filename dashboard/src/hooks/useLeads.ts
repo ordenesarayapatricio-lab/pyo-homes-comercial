@@ -70,6 +70,7 @@ export interface LeadItem {
   estado_workflow: EstadoWorkflow;
   archivado: boolean;
   updated_at: string;
+  created_at: string | null;
   contacto_id: string | null;
   // vendedor (leads_propietarios)
   fecha_ultimo_contacto: string | null;
@@ -98,7 +99,7 @@ export interface LeadItem {
 
 const PROPIETARIOS_SELECT = `
   id_lead, nombre_dueno, telefono, motivacion_venta, motivo_categoria, urgencia_venta,
-  valor_tasacion_uf, valor_publicacion_uf, etapa_captacion, estado_workflow, archivado, updated_at,
+  valor_tasacion_uf, valor_publicacion_uf, etapa_captacion, estado_workflow, archivado, updated_at, created_at,
   fecha_ultimo_contacto, contacto_id, propiedad_id,
   contactos ( email, origen, asignado_a ),
   propiedades_inventario ( direccion )
@@ -106,14 +107,14 @@ const PROPIETARIOS_SELECT = `
 
 const COMPRADORES_SELECT = `
   id_comprador, nombre, telefono, presupuesto_uf, presupuesto_uf_num, valor_negociacion_uf, zona_interes,
-  tipo_operacion, necesidades_clave, nivel_calificacion, estado_workflow, archivado, updated_at,
+  tipo_operacion, necesidades_clave, nivel_calificacion, estado_workflow, archivado, updated_at, created_at,
   contacto_id,
   contactos ( email, origen, asignado_a )
 `;
 
 const ARRENDATARIOS_SELECT = `
   id_candidato, nombre_completo, telefono, ingreso_mensual, complementa_renta,
-  estado_calificacion, estado_workflow, archivado, updated_at, contacto_id, propiedad_id,
+  estado_calificacion, estado_workflow, archivado, updated_at, created_at, contacto_id, propiedad_id,
   contactos ( email, origen, asignado_a ),
   propiedades_inventario ( direccion )
 `;
@@ -132,6 +133,7 @@ function mapPropietario(row: any): LeadItem {
     estado_workflow: row.estado_workflow,
     archivado: row.archivado ?? false,
     updated_at: row.updated_at,
+    created_at: row.created_at,
     contacto_id: row.contacto_id,
     fecha_ultimo_contacto: row.fecha_ultimo_contacto,
     direccion: row.propiedades_inventario?.direccion ?? null,
@@ -170,6 +172,7 @@ function mapComprador(row: any): LeadItem {
     estado_workflow: row.estado_workflow,
     archivado: row.archivado ?? false,
     updated_at: row.updated_at,
+    created_at: row.created_at,
     contacto_id: row.contacto_id,
     fecha_ultimo_contacto: null,
     direccion: null,
@@ -207,6 +210,7 @@ function mapArrendatario(row: any): LeadItem {
     estado_workflow: row.estado_workflow,
     archivado: row.archivado ?? false,
     updated_at: row.updated_at,
+    created_at: row.created_at,
     contacto_id: row.contacto_id,
     fecha_ultimo_contacto: null,
     direccion: row.propiedades_inventario?.direccion ?? null,

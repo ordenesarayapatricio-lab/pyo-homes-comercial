@@ -3,7 +3,8 @@ import { PerformanceChart } from "../components/PerformanceChart";
 import { ActivityFeed } from "../components/ActivityFeed";
 import { RecentLeadsTable } from "../components/RecentLeadsTable";
 import { useContactos } from "../hooks/useContactos";
-import type { EstadoWorkflow } from "../lib/mockData";
+import type { Contacto, EstadoWorkflow } from "../lib/mockData";
+import { bucketPorMes, formatDelta } from "../lib/deltas";
 
 const ufFormat = new Intl.NumberFormat("es-CL", { maximumFractionDigits: 0 });
 
@@ -11,19 +12,36 @@ function countByStage(contactos: { estado_workflow: EstadoWorkflow }[], stage: E
   return contactos.filter((c) => c.estado_workflow === stage).length;
 }
 
+// Tendencia mes vs mes anterior — usa fecha_ingreso (la vista vista_progreso_leads
+// ya la expone) como proxy del mes en que ocurrió cada fila, ver lib/deltas.ts.
+function deltaConteo(contactos: Contacto[], stage: EstadoWorkflow) {
+  const filas = contactos.filter((c) => c.estado_workflow === stage);
+  return formatDelta(bucketPorMes(filas, (c) => c.fecha_ingreso));
+}
+
 export function Dashboard() {
   const { contactos, loading, error } = useContactos();
 
-  const ingresosCerrados = contactos
-    .filter((c) => c.estado_workflow === "Cerrado Ganado" && c.precio_venta_uf)
-    .reduce((sum, c) => sum + (c.precio_venta_uf ?? 0), 0);
+  const cerrados = contactos.filter((c) => c.estado_workflow === "Cerrado Ganado" && c.precio_venta_uf);
+  const ingresosCerrados = cerrados.reduce((sum, c) => sum + (c.precio_venta_uf ?? 0), 0);
+  const deltaIngresos = formatDelta(bucketPorMes(cerrados, (c) => c.fecha_ingreso, (c) => c.precio_venta_uf ?? 0));
 
   const stats = [
-    { label: "Ingresos Cerrados (UF)", value: `UF ${ufFormat.format(ingresosCerrados)}`, icon: "payments" },
-    { label: "Nuevos", value: String(countByStage(contactos, "Nuevo")), icon: "person_add" },
-    { label: "Contactados", value: String(countByStage(contactos, "Contactado")), icon: "call" },
-    { label: "Negociación", value: String(countByStage(contactos, "Negociación")), icon: "handshake" },
-    { label: "Cerrados", value: String(countByStage(contactos, "Cerrado Ganado")), icon: "task_alt" },
+    { label: "Ingresos Cerrados (UF)", value: `UF ${ufFormat.format(ingresosCerrados)}`, icon: "payments", ...deltaIngresos },
+    { label: "Nuevos", value: String(countByStage(contactos, "Nuevo")), icon: "person_add", ...deltaConteo(contactos, "Nuevo") },
+    { label: "Contactados", value: String(countByStage(contactos, "Contactado")), icon: "call", ...deltaConteo(contactos, "Contactado") },
+    {
+      label: "Negociación",
+      value: String(countByStage(contactos, "Negociación")),
+      icon: "handshake",
+      ...deltaConteo(contactos, "Negociación"),
+    },
+    {
+      label: "Cerrados",
+      value: String(countByStage(contactos, "Cerrado Ganado")),
+      icon: "task_alt",
+      ...deltaConteo(contactos, "Cerrado Ganado"),
+    },
   ];
 
   return (

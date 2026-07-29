@@ -1,4 +1,5 @@
 import type { PropertyItem } from "../../hooks/useProperties";
+import { comisionArriendoClp, comisionVentaUf } from "../../lib/comisiones";
 
 interface EvalForm {
   valor_tasacion_uf: number | null;
@@ -33,6 +34,13 @@ export function FichaFinancieroTab({ form, onChange, evalForm, onEvalChange, val
   const noiAnual = arriendoMensual != null ? arriendoMensual * 12 - gastosAnuales : null;
   const precioVentaClp = form.precio_venta_uf && valorUf ? form.precio_venta_uf * valorUf : null;
   const capRate = noiAnual != null && precioVentaClp ? (noiAnual / precioVentaClp) * 100 : null;
+
+  const comisionVenta = comisionVentaUf(form.precio_venta_uf ?? null);
+  const comisionArriendo = comisionArriendoClp({
+    precioArriendoClp: form.precio_arriendo_clp ?? null,
+    plazoContratoMeses: form.plazo_contrato_meses ?? null,
+    mesesGarantia: form.meses_garantia ?? null,
+  });
 
   return (
     <div className="space-y-5">
@@ -104,6 +112,44 @@ export function FichaFinancieroTab({ form, onChange, evalForm, onEvalChange, val
               onChange={(e) => onChange({ margen_negociacion_uf: e.target.value ? Number(e.target.value) : null })}
               className={inputClass}
             />
+          </div>
+          <div className="col-span-2">
+            <label className={labelClass}>Comisión de Venta (2%+IVA ambas puntas)</label>
+            <div className="bg-surface-container-high rounded px-3 py-2 text-sm font-bold text-gold">
+              {comisionVenta != null ? `UF ${ufFormat.format(comisionVenta)}` : "— (falta precio de venta)"}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 className="text-xs font-bold text-gold uppercase tracking-wide mb-2">Contrato de Arriendo y Comisión</h3>
+        <div className="grid grid-cols-2 gap-3">
+          <div>
+            <label className={labelClass}>Plazo del Contrato (meses)</label>
+            <input
+              type="number"
+              value={form.plazo_contrato_meses ?? ""}
+              onChange={(e) => onChange({ plazo_contrato_meses: e.target.value ? Number(e.target.value) : null })}
+              className={inputClass}
+            />
+          </div>
+          <div>
+            <label className={labelClass}>Meses de Garantía</label>
+            <input
+              type="number"
+              value={form.meses_garantia ?? ""}
+              onChange={(e) => onChange({ meses_garantia: e.target.value ? Number(e.target.value) : null })}
+              className={inputClass}
+            />
+          </div>
+          <div className="col-span-2">
+            <label className={labelClass}>
+              Comisión de Arriendo ({(form.plazo_contrato_meses ?? 0) >= 24 ? "2%+IVA del total del contrato" : "50%+IVA de la garantía"})
+            </label>
+            <div className="bg-surface-container-high rounded px-3 py-2 text-sm font-bold text-gold">
+              {comisionArriendo != null ? `$${clpFormat.format(comisionArriendo)}` : "— (faltan datos del contrato)"}
+            </div>
           </div>
         </div>
       </div>
